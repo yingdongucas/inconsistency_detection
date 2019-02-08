@@ -1,0 +1,199 @@
+5 6 y SQL Injection exists in the CW_Tags 2.0.6 component for Joomla via the searchtext array parameter .
+0 1 y CW_Tags 2.0.6 - SQL Injection Dork : N/A Date : 22.02.2018
+0 1 y CW_Tags 2.0.6 - SQL Injection
+0 1 y Freelance_Website_Script 2.0.6 has SQL Injection via the jobdetails.php pr_id parameter or the searchbycat_list.php catid parameter .
+3 4 y Exploit Title : Freelance_Website_Script 2.0.6 - SQL Injection Dork : N/A Date : 08.12.2017
+0 1 y Freelance_Website_Script 2.0.6 - pr_id catid SQL Injection
+0 1 y Nearbuy_Clone_Script 3.2 has SQL Injection via the category_list.php search parameter .
+3 4 y Exploit Title : Nearbuy_Clone_Script 3.2 - SQL Injection Dork : N/A Date : 08.12.2017
+0 1 y Nearbuy_Clone_Script 3.2 - earch SQL Injection
+2 3 y In the com_tag 1.7.6 for Joomla ! , a SQL injection vulnerability is located in the `tag` parameter to index.php .
+4 5 y SQL injection vulnerability in SOL.Connect_ISET-mpp_meter 1.2.4.2_and_earlier allows remote attackers to execute arbitrary SQL commands via the user parameter in a login action .
+3 4 y Affected version : SOL.Connect_ISET-mpp_meter 1.2.4.2_and_possibly_earlier
+0 1 y SOL.Connect_ISET-mpp_meter 1.2.4.2 - SQL Injection
+3 4 y [ CVE-2017-11494 ] SOL.Connect_ISET-mpp_meter 1.2.4.2 Authentication Bypass SQL Injection Vulnerability
+5 7 y SQL injection vulnerability in the WP-Testimonials plugin 3.4.1 for WordPress allows an authenticated user to execute arbitrary SQL commands via the testid parameter to wp-admin/admin.php .
+7 9 y Description : SQL injection vulnerability in the WP-Testimonials plugin 3.4.1 for WordPress allows an authenticated user to execute arbitrary SQL commands via the testid parameter to wp-admin/admin.php .
+3 4 y Exploit Title : WP-Testimonials <_3.4.1 Union Based SQL Injection Date : 03-06-2017 Exploit Author : Dimitrios Tsagkarakis Website : dtsa.eu Software Link :
+2 3 y WordPress Plugin WP-Testimonials <_3.4.1 - SQL Injection
+6 7 y SQL injection vulnerability in inc/lib/Options.class.php in GeniXCMS before_1.0.0 allows remote attackers to execute arbitrary SQL commands via the modules parameter .
+6 7 y SQL injection vulnerability in Posts.class.php in GeniXCMS through_0.0.8 allows remote attackers to execute arbitrary SQL commands via the id parameter .
+0 1 y IBM_Maximo_Asset_Management 7.1 , 7.5 , and 7.6 is vulnerable to SQL injection .
+0 3 y IBM_Maximo_Asset_Management 7.1 , 7.5 , and 7.6 is vulnerable to SQL injection .
+0 5 y IBM_Maximo_Asset_Management 7.1 , 7.5 , and_7.6 is vulnerable to SQL injection .
+11 12 y SQL injection vulnerability in the Content Types Content Types screen in dotCMS before_3.3.1 allows remote authenticated attackers to execute arbitrary SQL commands via the orderby parameter .
+5 7 y An issue was discovered in Ecava_IntegraXor Version 5.0.413.0 .
+4 8 y SQL injection vulnerability in Intel_Security_VirusScan_Enterprise_Linux ( VSEL ) 2.0.3 ( and earlier ) allows remote authenticated users to obtain product information via a crafted HTTP request parameter .
+4 10 y SQL injection vulnerability in Intel_Security_VirusScan_Enterprise_Linux ( VSEL ) 2.0.3 ( and_earlier ) allows remote authenticated users to obtain product information via a crafted HTTP request parameter .
+10 12 y SQL injection vulnerability in Intel Security VirusScan Enterprise Linux ( VSEL ) 2.0.3 ( and earlier ) allows remote authenticated users to obtain product information via a crafted HTTP request parameter .
+10 14 y SQL injection vulnerability in Intel Security VirusScan Enterprise Linux ( VSEL ) 2.0.3 ( and_earlier ) allows remote authenticated users to obtain product information via a crafted HTTP request parameter .
+0 3 y McAfee_Virus_Scan_Enterprise for Linux 1.9.2_<_2.0.2 - Remote Code Execution
+6 7 y SQL injection vulnerability in libraries/central_columns.lib.php in phpMyAdmin 4.4.x_before_4.4.15.7_and_4.6.x_before_4.6.3 allows remote attackers to execute arbitrary SQL commands via a crafted database name that is mishandled in a central column query .
+8 9 y Multiple SQL injection vulnerabilities in admin/handlers.php in the GigPress before_2.3.9 for WordPress allow remote authenticated users to execute arbitrary SQL commands via the ( 1 ) show_artist_id or ( 2 ) show_venue_id parameter in an add action in the gigpress.php page to wp-admin/admin.php .
+2 3 y WordPress Plugin GigPress 2.3.8 - SQL Injection
+10 11 y SQL injection vulnerability in the getProfile function in system/profile.functions.php in Free_Reprintables_ArticleFR 3.0.5 allows remote attackers to execute arbitrary SQL commands via the username parameter to register/ .
+7 8 y Exploit Title : SQL injection vulnerability in articleFR_CMS 3.0.5 Google Dork : N/A Date : 01/21/2015 Exploit Author : Tran Dinh Tien ( tien.d.tran @ itas.vn ) & ITAS Team ( )
+0 1 y ArticleFR_CMS 3.0.5 - SQL Injection
+6 7 y SQL injection vulnerability in /send-to in Sendy 1.1.9.1 allows remote attackers to execute arbitrary SQL commands via the c parameter .
+3 4 y Exploit Title : Sendy 1.1.9.1 - SQL Injection Vulnerability Date : 2014-04-10 Exploit Author : marduk369
+0 1 y Sendy 1.1.9.1 - SQL Injection
+0 1 y Sendy 1.1.9.1 - SQL Injection Vulnerability
+10 11 y SQL injection vulnerability in the actionIndex function in protected/modules_core/notification/controllers/ListController.php in HumHub 0.10.0-rc.1_and_earlier allows remote authenticated users to execute arbitrary SQL commands via the from parameter to index.php .
+12 17 y Vendor Homepage : Software Link : Version : < = 0.10.0-rc.1 The Humhub social networking kit versions 0.10.0-rc.1_and_prior suffer from an SQL injection vulnerability , which has now been resolved in cooperation with the vendor , in its notification listing functionality allowing an attacker to obtain backend database access .
+3 4 y Exploit Title : Humhub <_=_0.10.0-rc.1 SQL injection vulnerability Date : 08-12-2014 Exploit Author : Jos Wetzels , Emiel Florijn
+0 1 y Humhub 0.10.0-rc.1 - SQL Injection
+5 12 y Multiple SQL injection vulnerabilities in Zoph ( aka Zoph Organizes Photos ) 0.9.1_and_earlier allow remote authenticated users to execute arbitrary SQL commands via the ( 1 ) _action parameter to group.php or ( 2 ) user.php or the ( 3 ) location_id parameter to photos.php in php/ .
+7 9 y Multiple SQL injection vulnerabilities in Zoph ( aka_Zoph_Organizes_Photos ) 0.9.1_and_earlier allow remote authenticated users to execute arbitrary SQL commands via the ( 1 ) _action parameter to group.php or ( 2 ) user.php or the ( 3 ) location_id parameter to photos.php in php/ .
+5 6 y SQL injection vulnerability in the Gallery_Objects 0.4 for WordPress allows remote attackers to execute arbitrary SQL commands via the viewid parameter in a go_view_object action to wp-admin/admin-ajax.php .
+5 6 y Multiple SQL injection vulnerabilities in Dell_SonicWall_Scrutinizer 11.0.1 allow remote authenticated users to execute arbitrary SQL commands via the ( 1 ) selectedUserGroup parameter in a create new user request to cgi-bin/admin.cgi or the ( 2 ) user_id parameter in the changeUnit function , ( 3 ) methodDetail parameter in the methodDetail function , or ( 4 ) xcNetworkDetail parameter in the xcNetworkDetail function in d4d/exporters.php .
+0 1 y Dell_SonicWALL_Scrutinizer 11.01 - methodDetail SQL Injection ( Metasploit )
+7 11 y SQL injection vulnerability in vote.php in the 2Glux_Sexy_Polling ( com_sexypolling ) before_1.0.9 for Joomla allows remote attackers to execute arbitrary SQL commands via the answer_id [ ] parameter .
+11 13 y SQL injection vulnerability in vote.php in the 2Glux Sexy Polling ( com_sexypolling ) before_1.0.9 for Joomla allows remote attackers to execute arbitrary SQL commands via the answer_id [ ] parameter .
+11 12 y SQL injection vulnerability in functions/prepend_adm.php in Nagios Core Config Manager in Nagios_XI before_2012R2.4 allows remote attackers to execute arbitrary SQL commands via the tfPassword parameter to nagiosql/index.php .
+10 11 y SQL injection vulnerability in the web interface for cumin in Red_Hat Enterprise_MRG_Grid_2.4 allows remote attackers to execute arbitrary SQL commands via vectors related to the filtering table operator .
+9 10 y Multiple cross-site request forgery ( CSRF ) vulnerabilities in ZPanel 10.0.1_and_earlier allow remote attackers to hijack the authentication of administrators for requests that ( 1 ) create new FTP users via a CreateFTP action in the ftp_management module to the default URI , ( 2 ) conduct cross-site scripting ( XSS ) attacks via the inFullname parameter in an UpdateAccountSettings action in the my_account module to zpanel/ , or ( 3 ) conduct SQL injection attacks via the inEmailAddress parameter in an UpdateClient action in the manage_clients module to the default URI .
+3 4 y Exploit Title : ZPanel <_=_10.0.1 CSRF , XSS , SQLi , Password Reset Date : 04/11/2012 Exploit Author : pcsjj
+0 1 y ZPanel 10.0.1 - Cross-Site Request Forgery Cross-Site Scripting SQL Injection Password Reset
+5 6 y Multiple SQL injection vulnerabilities in SpamTitan_WebTitan before_3.60 allow remote attackers to execute arbitrary SQL commands via ( 1 ) the username parameter to login-x.php , and allow remote authenticated users to execute arbitrary SQL commands via the ( 2 ) bldomain , ( 3 ) wldomain , or ( 4 ) temid parameter to urls-x.php .
+4 5 y SQL injection vulnerability in Parodia before_6.809 allows remote attackers to execute arbitrary SQL commands via unspecified vectors .
+6 7 y Multiple SQL injection vulnerabilities in the SmarterTools_SmarterStats 6.0 web server allow remote attackers to execute arbitrary SQL commands via certain parameters to ( 1 ) Admin/frmSite.aspx , ( 2 ) Default.aspx , ( 3 ) Services/SiteAdmin.asmx , or ( 4 ) Client/frmViewReports.aspx ; certain cookies to ( 5 ) Services/SiteAdmin.asmx or ( 6 ) login.aspx ; the Referer HTTP header to ( 7 ) Services/SiteAdmin.asmx or ( 8 ) login.aspx ; or ( 9 ) the User-Agent HTTP header to Services/SiteAdmin.asmx .
+6 7 y SQL injection vulnerability in index.php in CMScout 2.0.8 allows remote attackers to execute arbitrary SQL commands via the album parameter in a photos action .
+2 3 y Title : CMScout 2.08 SQL Injection Vulnerability [ ! ]
+2 3 y Title : CMScout 2.08 SQL Injection Vulnerability EDB-ID : CVE-ID OSVDB-ID Author : Dr.0rYX and Cr3w-DZ Published : Verified : Download Exploit Code Download N/A NNNN NNNN AAAAAA SSSSSSSS TTTTTTTTTTTT NNNNNN NNNN AAAAAA SSSSSSSSSSSS TTTTTTTTTTTT NNNNNN NNNN AAAA AAAA SSSS TTTT eeeeee aaaaaa mmmm mm mmmm NNNNNNNN NNNN AAAA AAAA SSSSSSSSSS TTTT eeee eeee aaaa aaaa mmmmmmmmmmmmmmmm NNNN NNNNNNNN AAAA AAAA SSSSSSSS TTTT eeeeeeeeee aaaaaa mmmm mmmm mmmm NNNN NNNNNN AAAAAAAAAAAAAA SSSS TTTT eeee aaaa aaaa mmmm mmmm mmmm NNNN NNNNNN AAAAAAAAAAAAAA SSSSSSSSSSSS TTTT eeeeeeeeee aaaa aaaa mmmm mmmm mmmm NNNN NNNN AAAA AAAA SSSSSSSS TTTT eeeeee aaaaaaaaaa mmmm mmmm mmmm ALGERIAN HACKER NORTH-AFRICA SECURITY TEAM
+4 5 y Vendor : script : CMScout 2.08 [ + ] Download : Vulnerability : php SQL injection [ + ] Dork : Powered by CMScout ( c ) 2005 CMScout Group
+0 1 y CMScout 2.08 - SQL Injection
+5 9 y SQL injection vulnerability in the BF_Quiz ( com_bfquiztrial ) before_1.3.1 for Joomla allows remote attackers to execute arbitrary SQL commands via the catid parameter in a bfquiztrial action to index.php .
+8 10 y SQL injection vulnerability in the BF Quiz ( com_bfquiztrial ) before_1.3.1 for Joomla allows remote attackers to execute arbitrary SQL commands via the catid parameter in a bfquiztrial action to index.php .
+6 10 y SQL injection vulnerability in winners.php in Science_Fair_In_A_Box ( SFIAB ) 2.0.6_and_2.2.0 allows remote attackers to execute arbitrary SQL commands via the type parameter .
+12 14 y SQL injection vulnerability in winners.php in Science Fair In A Box ( SFIAB ) 2.0.6_and_2.2.0 allows remote attackers to execute arbitrary SQL commands via the type parameter .
+3 10 y Exploit Title : Science_Fair_In_A_Box SQLi & XSS Vulnerability Version : 2.0.6 Price : Free
+6 7 y SQL injection vulnerability in standings.php in Elite_Gaming_Ladders 3.5 allows remote attackers to execute arbitrary SQL commands via the ladder [ id ] parameter .
+3 4 y [ - ] Elite_Gaming_Ladders v3.5 SQL Injection Vulnerability [ - ] Date : 2010-06-19 Author : ahwak2000 Email : z.u5 [ at ] hotmail.com [ - ] Script Info [ - ] Home : Vulnerability [ - ] INj ]
+0 1 y Elite_Gaming_Ladders 3.5 - ladder [ id ] SQL Injection
+5 10 y SQL injection vulnerability in the Webkit_PDFs ( webkitpdf ) extension before_1.1.4 for TYPO3 allows remote attackers to execute arbitrary SQL commands via unspecified vectors .
+8 11 y SQL injection vulnerability in the Webkit PDFs ( webkitpdf ) extension before_1.1.4 for TYPO3 allows remote attackers to execute arbitrary SQL commands via unspecified vectors .
+10 11 y SQL injection vulnerability in the Webkit PDFs ( webkitpdf ) extension before_1.1.4 for TYPO3 allows remote attackers to execute arbitrary SQL commands via unspecified vectors .
+6 7 y SQL injection vulnerability in index.php in WAnewsletter 2.1.2 allows remote attackers to execute arbitrary SQL commands via the id parameter .
+0 2 y WAnewsletter v 2.1.2 SQL Injection Vulnerability
+3 4 y Tested on : windows xp_pack_3 [ Exploitable ] Injection ] go Demo ] Luck
+3 5 y Exploit Title : WAnewsletter v 2.1.2 SQL Injection Vulnerabilitie Date : 23/09/2010 Author : BrOx-Dz Author : E.dz @ hotmail.fr Software Link : Dork : no Kids Version : 2.1.2
+0 1 y WAnewsletter 2.1.2 - SQL Injection
+6 7 y SQL injection vulnerability in video.php in Get_Tube 4.51_and_earlier allows remote attackers to execute arbitrary SQL commands via the id parameter .
+0 1 y Get_Tube 4.51 & All Versions SQL Injection Vulnerability [ + ] Title Get Tube 4.51 & All Versions SQL Injection Vulnerability [ + ] Author Mr.P3rfekT [ + ] Contact Mr.P3rfekT @ gmail.com [ + ] Tested on Unix 10.1 [ + ] Date 2010/8/13 [ ~ ] Site :
+0 14 n Get_Tube 4.51 & All Versions SQL Injection Vulnerability [ + ] Title Get Tube 4.51 & All Versions SQL Injection Vulnerability [ + ] Author Mr.P3rfekT [ + ] Contact Mr.P3rfekT @ gmail.com [ + ] Tested on Unix 10.1 [ + ] Date 2010/8/13 [ ~ ] Site :
+13 2 n Get Tube 4.51 & All Versions SQL Injection Vulnerability [ + ] Title Get_Tube 4.51 & All Versions SQL Injection Vulnerability [ + ] Author Mr.P3rfekT [ + ] Contact Mr.P3rfekT @ gmail.com [ + ] Tested on Unix 10.1 [ + ] Date 2010/8/13 [ ~ ] Site :
+13 14 y Get Tube 4.51 & All Versions SQL Injection Vulnerability [ + ] Title Get_Tube 4.51 & All Versions SQL Injection Vulnerability [ + ] Author Mr.P3rfekT [ + ] Contact Mr.P3rfekT @ gmail.com [ + ] Tested on Unix 10.1 [ + ] Date 2010/8/13 [ ~ ] Site :
+6 7 y SQL injection vulnerability in filemgmt/singlefile.php in Geeklog 1.3.8 allows remote attackers to execute arbitrary SQL commands via the lid parameter .
+0 1 y GeekLog v1.3.8 ( filemgmt ) SQL Injection Vulnerability Author : Gamoscu Homepage : : :
+0 1 y GeekLog 1.3.8 ( filemgmt ) - SQL Injection
+7 8 y Multiple SQL injection vulnerabilities in index.cfm in ColdGen_ColdUserGroup 1.06 allow remote attackers to execute arbitrary SQL commands via the ( 1 ) ArticleID or ( 2 ) LibraryID parameter .
+4 5 y ! /usr/bin/python ColdGen - coldusergroup v1.06 0day Remote Blind SQL Injection Exploit
+0 1 y ColdUserGroup 1.06 - Blind SQL Injection
+5 9 y SQL injection vulnerability in the SermonSpeaker ( com_sermonspeaker ) before_3.2.1 for Joomla allows remote attackers to execute arbitrary SQL commands via the id parameter in a latest_sermons action to index.php .
+7 9 y SQL injection vulnerability in the SermonSpeaker ( com_sermonspeaker ) before_3.2.1 for Joomla allows remote attackers to execute arbitrary SQL commands via the id parameter in a latest_sermons action to index.php .
+5 6 y SQL injection vulnerability in the Brainstorming_extension 0.1.8_and_earlier for TYPO3 allows remote attackers to execute arbitrary SQL commands via unspecified vectors .
+5 9 y Multiple SQL injection vulnerabilities in Small_Pirate ( SPirate ) 2.1 allow remote attackers to execute arbitrary SQL commands via ( 1 ) the id parameter to the default URI in an rss .xml action , or the id parameter to ( 2 ) pag1.php , ( 3 ) pag1-guest.php , ( 4 ) rss-comment_post.php ( aka rss-coment_post.php ) , or ( 5 ) rss-pic-comment.php .
+8 10 y Multiple SQL injection vulnerabilities in Small Pirate ( SPirate ) 2.1 allow remote attackers to execute arbitrary SQL commands via ( 1 ) the id parameter to the default URI in an rss .xml action , or the id parameter to ( 2 ) pag1.php , ( 3 ) pag1-guest.php , ( 4 ) rss-comment_post.php ( aka rss-coment_post.php ) , or ( 5 ) rss-pic-comment.php .
+3 4 y MULTIPLE REMOTE VULNERABILITIES Small_Pirates v-2.1 CMS INFORMATION WEB DOWNLOAD DEMO CATEGORY : CMS Board CMS VULNERABILITY TESTED ON : firefox 3 | | > DORK : Basado en Spirate CATEGORY : SQL INJECTION VULNERABILITIES COOKIE STEALING BLIND SQL INJECTION | | > AFFECT VERSION : < = 2.1 | | > Discovered Bug date : 2009-05-10 | | > Reported Bug date : 2009-05-10 | | > Fixed bug date : N/A | | > Info patch : Not fixed | | > Author : YEnH4ckEr | | > mail : y3nh4ck3r [ at ] gmail [ dot ] com | | > WEB/BLOG : N/A | | > COMMENT : A mi novia Marijose ... hermano , cunyada , padres ( y amigos xD ) por su apoyo .
+0 1 y small_pirate 2.1 - Cross-Site Scripting SQL Injection
+3 4 y MULTIPLE REMOTE VULNERABILITIES Small_Pirates v-2.1 CMS INFORMATION : > WEB : > DOWNLOAD : > DEMO : > CATEGORY : CMS Board CMS VULNERABILITY : > TESTED ON : firefox 3 > DORK : Basado en Spirate > CATEGORY : SQL INJECTION VULNERABILITIES COOKIE STEALING BLIND SQL INJECTION > AFFECT VERSION : < = 2.1 > Discovered Bug date : 2009-05-10 > Reported Bug date : 2009-05-10 > Fixed bug date : N/A > Info patch : Not fixed > Author : YEnH4ckEr > mail : y3nh4ck3r [ at ] gmail [ dot ] com > WEB/BLOG : N/A > COMMENT : A mi novia Marijose ... hermano , cunyada , padres ( y amigos xD ) por su apoyo .
+6 7 y SQL injection vulnerability in index.php in RadNICS Gold_5 allows remote attackers to execute arbitrary SQL commands via the fid parameter in a view_forum action .
+0 1 y radnics gold_5.0 - Multiple Vulnerabilities
+5 9 y SQL injection vulnerability in the NinjaMonials ( com_ninjacentral ) 1.1.0 for Joomla allows remote attackers to execute arbitrary SQL commands via the testimID parameter in a display action to index.php .
+7 9 y SQL injection vulnerability in the NinjaMonials ( com_ninjacentral ) 1.1.0 for Joomla allows remote attackers to execute arbitrary SQL commands via the testimID parameter in a display action to index.php .
+1 2 y Component com_ninjamonial 1.1 - testimID SQL Injection
+6 7 y SQL injection vulnerability in index.php in OpenDocMan 1.2.5 allows remote attackers to execute arbitrary SQL commands via the frmpass ( aka Password ) parameter .
+5 9 y SQL injection vulnerability in the JBudgetsMagic ( com_jbudgetsmagic ) 0.3.2_through_0.4.0 for Joomla allows remote attackers to execute arbitrary SQL commands via the bid parameter in a mybudget action to index.php .
+7 9 y SQL injection vulnerability in the JBudgetsMagic ( com_jbudgetsmagic ) 0.3.2_through_0.4.0 for Joomla allows remote attackers to execute arbitrary SQL commands via the bid parameter in a mybudget action to index.php .
+0 1 y com_jbudgetsmagic 0.3.2_<_0.4.0 - bid SQL Injection
+7 8 y Multiple SQL injection vulnerabilities in comments.php in Super_Simple_Blog_Script 2.5.4 , when magic_quotes_gpc is disabled , allow remote attackers to execute arbitrary SQL commands via the entry parameter .
+0 1 y Super_Simple_Blog_Script 2.5.4 - entry SQL Injection
+5 6 y Multiple SQL injection vulnerabilities in Tausch_Ticket_Script 3 allow remote attackers to execute arbitrary SQL commands via the ( 1 ) userid parameter to suchauftraege_user.php and the ( 2 ) descr parameter to vote.php ; and other unspecified vectors .
+4 5 y SQL injection vulnerability in Empire_CMS 5.1 allows remote attackers to execute arbitrary SQL commands via the bid parameter to the default URI under e/tool/gbook/ .
+6 9 y Securitylab.ir Application Info : Name : Empire_Cms Version : 5.1 Download : Discoverd By : Securitylab.ir Website : Contacts : admin [ at ] securitylab.ir & k4mr4n_st ( at ) yahoo ( dot ) com [ email concealed ] Vulnerability Info : Type : Sql Injection Risk : Medium concat ( username,0x5f , password,0x5f , rnd ) from phome_enewsuser where userid=1 ) ,1,1,1,0,0,0 Securitylab Security Research Team
+0 1 y Empire_Cms 5.1 sql injection
+6 7 y SQL injection vulnerability in insidepage.php in Creative_Web_Solutions_Multi-Level_CMS 1.21 allows remote attackers to execute arbitrary SQL commands via the catid parameter .
+4 5 y SQL injection vulnerability in Mr._CGI_Guy_Hot_Links_SQL-PHP 3_and_earlier allows remote attackers to execute arbitrary SQL commands via the news.php parameter .
+7 8 y Multiple SQL injection vulnerabilities in checkuser.php in 2532designs_2532|Gigs 1.2.2_Stable , when magic_quotes_gpc is disabled , allow remote attackers to execute arbitrary SQL commands via the ( 1 ) username and ( 2 ) password parameters , as accessible from a form generated by index.php .
+0 1 y 2532|Gigs 1.2.2_Stable Remote Login Bypass Vulnerability by athos - staker [ at ] hotmail [ dot ] it File Vuln checkuser.php 16 .
+0 1 y 2532/Gigs 1.2.2_Stable - Remote Authentication Bypass
+5 9 y SQL injection vulnerability in the Live_Chat ( com_livechat ) 1.0 for Joomla allows remote attackers to execute arbitrary SQL commands via the last parameter to getChatRoom.php .
+8 10 y SQL injection vulnerability in the Live Chat ( com_livechat ) 1.0 for Joomla allows remote attackers to execute arbitrary SQL commands via the last parameter to getChatRoom.php .
+4 9 y SQL injection vulnerability in Download_system ( sb_downloader ) extension 0.1.4_and_earlier for TYPO3 allows remote attackers to execute arbitrary SQL commands via unknown vectors .
+7 10 y SQL injection vulnerability in Download system ( sb_downloader ) extension 0.1.4_and_earlier for TYPO3 allows remote attackers to execute arbitrary SQL commands via unknown vectors .
+9 10 y SQL injection vulnerability in Download system ( sb_downloader ) extension 0.1.4_and_earlier for TYPO3 allows remote attackers to execute arbitrary SQL commands via unknown vectors .
+6 7 y SQL injection vulnerability in index.php in Hivemaker Professional_1.0.2_and_earlier , when magic_quotes_gpc is disabled , allows remote attackers to execute arbitrary SQL commands via the cid parameter .
+5 6 y Affected software description Application : HiveMaker Professional_version : < = 1.0.2
+5 9 y Affected software description Application : HiveMaker Professional version : <_=_1.0.2
+0 1 y HiveMaker Professional_1.0.2 - cid SQL Injection
+0 1 y HiveMaker_Directory 1.0.2 - cid SQL Injection
+5 6 y [ ECHO_ADV_96 $ 2008 ] HiveMaker Professional_<_=_1.0.2 ( cid ) Sql Injection Vulnerability
+5 9 y Multiple SQL injection vulnerabilities in Social_Site_Generator ( SSG ) 2.0 allow remote attackers to execute arbitrary SQL commands via the ( 1 ) sgc_id parameter to display_blog.php , ( 2 ) scm_mem_id parameter to social_my_profile_download.php , and the ( 3 ) catid parameter to social_forum_subcategories.php .
+9 11 y Multiple SQL injection vulnerabilities in Social Site Generator ( SSG ) 2.0 allow remote attackers to execute arbitrary SQL commands via the ( 1 ) sgc_id parameter to display_blog.php , ( 2 ) scm_mem_id parameter to social_my_profile_download.php , and the ( 3 ) catid parameter to social_forum_subcategories.php .
+0 1 y Social_Site_Generator 2.0 - gc_id SQL Injection
+6 7 y SQL injection vulnerability in home.html in Xpoze Pro_4.10 allows remote attackers to execute arbitrary SQL commands via the menu parameter .
+0 1 y Xpoze 4.10 - menu Blind SQL Injection
+6 7 y SQL injection vulnerability in nickpage.php in phpCC 4.2_beta_and_earlier allows remote attackers to execute arbitrary SQL commands via the npid parameter in a sign_gb action .
+0 1 y PHPCC 4.2_Beta - nickpage.php npid SQL Injection
+6 7 y SQL injection vulnerability in Types.asp in Enthrallweb_eCars 1.0 allows remote attackers to execute arbitrary SQL commands via the Type_id parameter .
+2 3 y Title : Enthrallweb_eCars 1.0 ( types.asp ) Remote SQL Injection Vulnerability Author : ajann Contact S.Page 179.40 USD SQL ] ] ] Pass Types.asp Type_id=-1 % 20union % 20select % 200 , u_Password % 20from % 20users Home user Types.asp Type_id=-1 % 20union % 20select % 200 , u_ID % 20from % 20users [ [ /SQL ajann , Turkey Im not Hacker !
+0 1 y Enthrallweb_eCars 1.0 - types.asp SQL Injection
+7 8 y ! /usr/bin/perl [ Script Name : The Classified_Ad 1.0 ( main ) Remote SQL Injection Exploit [ Coded by : ajann [ Author : ajann [ Contact S.Page : : 29.99 .
+1 2 y The Classified_Ad 1.0 - main SQL Injection
+6 7 y SQL injection vulnerability in anna.pl in Anna^_IRC_Bot before_0.30 ( aka caprice ) allows remote attackers to execute arbitrary SQL commands via unspecified vectors .
+10 11 y SQL injection vulnerability on the subMenu page in switch.asp in Munch Pro_1.0 allows remote attackers to execute arbitrary SQL commands via the catid parameter .
+6 7 y ! /usr/bin/perl [ Script Name : Munch Pro_1.0 ( switch.asp ) Remote SQL Injection Exploit [ Coded by : ajann [ Author : ajann [ Contact : : ( use IO : :Socket ; if ( @ ARGV < 3 ) { print Munch Pro 1.0 ( switch.asp ) Remote SQL Injection Exploit [ Usage : exploit.pl [ target ] [ path ] [ userid ] [ Example : exploit.pl victim.com 1 [ Example : exploit.pl victim.com /path 1 [ Vuln & Exp : ajann [ ; exit Local variables $ server = $ ARGV ; $ server =~ s/ ( http : / ) eg ; $ host 80 ; $ dir = $ ARGV ; $ file = switch.asp pg=subMenu & catid= ; $ target = -1 % 20union % 20select % 200,0 , username,0 , password,0 % 20from % 20users % 20where % 20id % 20like % 20 . $ ARGV ; $ target = $ host. $ dir. $ file. $ target ; Writing data to socket print print + Trying to connect : $ server ; $ socket = IO : :Socket : :INET- > new ( Proto = tcp , PeerAddr
+0 1 y Munch Pro_1.0 - witch.asp SQL Injection
+11 12 y Multiple SQL injection vulnerabilities in the wireless IDS management interface for Highwall_Enterprise_and_Highwall_Endpoint 4.0.2.11045 allow remote attackers to execute arbitrary SQL commands via unspecified vectors .
+6 7 y Multiple vulnerabilities in Highwall Enterprise and Highwall_Endpoint 4.0.2.11045 management interface SUMMARY Highwall Enterprise and Highwall Endpoint wireless IDS management interface contain multiple vulnerabilities which can lead to privilege escalation and code execution .
+12 13 y SQL injection vulnerability in default.asp ( aka the login page ) in ClickTech_ClickBlog 2.0 allows remote attackers to execute arbitrary SQL commands via the ( 1 ) username and ( 2 ) form_codeword ( aka the Password field ) parameters .
+6 7 y SQL injection vulnerability in links.php in Gonafish_LinksCaffe 3.0 allows remote attackers to execute arbitrary SQL commands via the cat parameter .
+6 7 y SQL injection vulnerability in topics.php in Blue_Dojo_Graffiti_Forums 1.0 allows remote attackers to execute arbitrary SQL commands via the f parameter .
+5 6 y Impact : Critical Risk - Graffiti_Forums v1.0 SQL Injection Vulnerabilities - - Description This forum uses PHP , MySQL , and Java and is very easy to install .
+0 1 y Graffiti_Forums v1.0 SQL Injection Vulnerabilities
+6 10 y SQL injection vulnerability in index.php in Infinite_Core_Technologies ( ICT ) 1.0_Gold_and_earlier allows remote attackers to execute arbitrary SQL commands via the post parameter .
+10 12 y SQL injection vulnerability in index.php in Infinite Core Technologies ( ICT ) 1.0_Gold_and_earlier allows remote attackers to execute arbitrary SQL commands via the post parameter .
+6 10 y SQL injection vulnerability in showmods.php in Woltlab_Burning_Board ( WBB ) 1.2 allows remote attackers to execute arbitrary SQL commands via the boardid parameter .
+10 12 y SQL injection vulnerability in showmods.php in Woltlab Burning Board ( WBB ) 1.2 allows remote attackers to execute arbitrary SQL commands via the boardid parameter .
+0 1 y WBB v1.2 showmods.php SQL Injection
+4 5 y SQL injection vulnerability in WeBBoA_Hosting 1.1 allows remote attackers to execute arbitrary SQL commands via the id parameter to an unspecified script , possibly host/yeni_host.asp .
+4 5 y SQL injection vulnerability in CS-Forum before_0.82 allows remote attackers to execute arbitrary SQL commands via the ( 1 ) id and ( 2 ) debut parameters in ( a ) read.php , and the ( 3 ) search and ( 4 ) debut parameters in ( b ) index.php .
+0 1 y CS-Forum <_=_0.81 Cross Site Scripting , SQL Injection , Full Path Disclosure
+4 5 y SQL injection vulnerability in Geeklog 1.4.0sr2_and_earlier allows remote attackers to execute arbitrary SQL commands via unknown vectors related to story submission .
+2 3 y stats.php in Destiney_Rated_Images_Script 0.5.0 allows remote attackers to obtain the installation path via an invalid s parameter , which displays the path in an error message .
+0 1 y Destiney_Rated_Images_Script v0.5.0 Homepage :
+0 1 y Destiney_Rated_Images_Script v0.5.0 - XSS Vulnv
+5 6 y Multiple SQL injection vulnerabilities in N8cms 1.1_and_1.2 allow remote attackers to execute arbitrary SQL commands via the ( 1 ) dir and ( 2 ) page_id parameter to index.php .
+0 1 y n8cms 1.1 & 1.2 version Sql xc4 xb0njection And XSS Site : Demo : Credit : Liz0ziM webpage : Mail : liz0 ( at ) bsdmail ( dot ) com [ email concealed ] 1 ) Sql xc4 xb0njection 2 ) Xss [ Cross Site Scripting ] Source :
+0 3 y n8cms 1.1 & 1.2 version Sql xc4 xb0njection And XSS Site : Demo : Credit : Liz0ziM webpage : Mail : liz0 ( at ) bsdmail ( dot ) com [ email concealed ] 1 ) Sql xc4 xb0njection 2 ) Xss [ Cross Site Scripting ] Source :
+0 1 y n8cms 1.1 & 1.2 version Sql xc4 xb0njection And XSS
+0 3 y n8cms 1.1 & 1.2 version Sql xc4 xb0njection And XSS
+12 13 y SQL injection vulnerability in index.php ( aka the login page ) in Oi_Email_Marketing 3.0 ( aka Oi 3 ) allows remote attackers to execute arbitrary SQL commands via the ( 1 ) Username and ( 2 ) Password fields .
+0 1 y Email_Marketing 3.0 SQL Injection SEVERITY : High SOFTWARE : Oi !
+0 1 y Email_Marketing 3.0 .
+0 1 y Email_Marketing 3.0 SQL Injection
+9 10 y SQL injection vulnerability in index.php in the Your_Account in PHP-Nuke 7.8_and_earlier allows remote attackers to execute arbitrary SQL commands via the username variable ( Nickname field ) .
+3 6 y Affected software : PHPNuke version : 7.9 + patch 3.1 Description : PHP-Nuke is a Web Portal System , storytelling software , News system , online community or whatever you want to call it .
+3 6 y Affected software : PHPNuke version : 7.8 with all security fixes/patches Not
+3 4 y Critical SQL Injection PHPNuke <_=_7.8 - Your_Account
+8 9 y Unspecified vulnerability in the Upgrade & Downgrade of Oracle_Database_server 8.1.7.4 , 9.0.1.5 , 9.2.0.7 , and 10.1.0.4 has unspecified impact and attack vectors , as identified by Oracle Vuln DB28 .
+8 11 y Unspecified vulnerability in the Upgrade & Downgrade of Oracle_Database_server 8.1.7.4 , 9.0.1.5 , 9.2.0.7 , and 10.1.0.4 has unspecified impact and attack vectors , as identified by Oracle Vuln DB28 .
+8 13 y Unspecified vulnerability in the Upgrade & Downgrade of Oracle_Database_server 8.1.7.4 , 9.0.1.5 , 9.2.0.7 , and 10.1.0.4 has unspecified impact and attack vectors , as identified by Oracle Vuln DB28 .
+8 15 y Unspecified vulnerability in the Upgrade & Downgrade of Oracle_Database_server 8.1.7.4 , 9.0.1.5 , 9.2.0.7 , and_10.1.0.4 has unspecified impact and attack vectors , as identified by Oracle Vuln DB28 .
+6 7 y SQL injection vulnerability in index.php in ClientExec 2.3 allows remote attackers to execute arbitrary SQL commands via the ( 1 ) billshowid , ( 2 ) billdetailid , ( 3 ) fuse , and ( 4 ) frmClientID parameters .
+6 7 y Multiple potential SQL injection vulnerabilities in DCP-Portal 6.1.1 might allow remote attackers to execute arbitrary SQL commands via ( 1 ) the password and username parameters in advertiser.php , ( 2 ) the aid parameter in announcement.php , ( 3 ) the dcp5_member_id , year , agid , day , day_s , hour , minute , month , month_s , and year_s parameters in calendar.php , ( 4 ) the cid parameter in contents.php , ( 5 ) the dcp5_member_id parameter in forums.php , ( 6 ) the bid parameter in go.php , ( 7 ) the lid parameter in golink.php , ( 8 ) the dcp5_member_id and mid parameters in inbox.php , ( 9 ) the catid , dcat , and dl parameters in index.php , ( 10 ) the dcp5_member_id in informer.php , ( 11 ) the nid parameter in news.php , ( 12 ) the type and rate parameters in rate.php , ( 13 ) the q parameter in search.php , and ( 14 ) the dcp5_member_id in update.php .
+6 7 y SQL injection vulnerability in create.php in Widget_Imprint 1.0.26_and_earlier allows remote attackers to execute arbitrary SQL commands via the product_id parameter .
+4 5 y SQL injection vulnerability in Softbiz_FAQ_Script 1.1_and_earler allows remote attackers to execute arbitrary SQL commands via the id parameter in ( 1 ) index.php , ( 2 ) faq_qanda.php , ( 3 ) refer_friend.php , ( 4 ) print_article.php , or ( 5 ) add_comment.php .
+6 7 y SQL injection vulnerability in content.php in Mambo 4.5.2.2_and_earlier allows remote attackers to execute arbitrary SQL commands via the user_rating parameter .
+7 8 y Multiple SQL injection vulnerabilities in album_search.php in Photo_Album 2.0.53 for phpBB allow remote attackers to execute arbitrary SQL commands via the ( 1 ) mode or ( 2 ) search parameters .
+39 40 y SQL injection vulnerability in ( 1 ) people.php , ( 2 ) track.php , ( 3 ) edit.php , ( 4 ) document.php , ( 5 ) census.php , ( 6 ) passthru.php and possibly other php files in phpMyFamily 1.4.0 allows remote attackers to execute arbitrary SQL commands , as demonstrated via ( 1 ) the person parameter to people.php or ( 2 ) the Login field .
+6 7 y SQL injection vulnerability in application_top.php for Zen_Cart 1.1.3_before_patch_2 may allow remote attackers to execute arbitrary SQL commands via the products_id parameter .
+26 27 y SQL injection vulnerability in ( 1 ) fdelmail.asp , ( 2 ) addressc.asp , and possibly ( 3 ) postmail.asp and ( 4 ) fmvmail.asp in CMailServer 5.2 allow remote attackers to inject arbitrary SQL commands and delete mail metadata or e-mail addresses of contacts via the indexOfMail parameter .
+5 6 y Multiple SQL injection vulnerabilities in XMB 1.8_Final_SP2 allow remote attackers to inject arbitrary SQL and gain privileges via the ( 1 ) ppp parameter in viewthread.php , ( 2 ) desc parameter in misc.php , ( 3 ) tpp parameter in forumdisplay.php , ( 4 ) ascdesc parameter in forumdisplay.php , or ( 5 ) the addon parameter in stats.php .
+15 16 y NOTE : it has also been shown that item ( 3 ) is also in XMB 1.9_beta .
+6 7 y SQL injection vulnerability in showphoto.php in PhotoPost_PHP Pro_4.6_and_earlier allows remote attackers to gain unauthorized access via the photo variable .
+6 7 y SQL injection vulnerability in auth.inc.php in Thatware 0.5.0_and_earlier allows remote attackers to execute arbitrary SQL commands via a base64-encoded user parameter .
+4 5 y SQL injection vulnerability in Gender_MOD 1.1.3 allows remote attackers to gain administrative access via the user_level parameter in the User Profile page .
+7 8 y The PostgreSQL authentication modules ( 1 ) mod_auth_pgsql 0.9.5 , and ( 2 ) mod_auth_pgsql_sys 0.9.4 , allow remote attackers to bypass authentication and execute arbitrary SQL via a SQL injection attack on the user name .
+7 15 n The PostgreSQL authentication modules ( 1 ) mod_auth_pgsql 0.9.5 , and ( 2 ) mod_auth_pgsql_sys 0.9.4 , allow remote attackers to bypass authentication and execute arbitrary SQL via a SQL injection attack on the user name .
+14 8 n The PostgreSQL authentication modules ( 1 ) mod_auth_pgsql 0.9.5 , and ( 2 ) mod_auth_pgsql_sys 0.9.4 , allow remote attackers to bypass authentication and execute arbitrary SQL via a SQL injection attack on the user name .
