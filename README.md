@@ -2,161 +2,18 @@
 
 VIEM (short for Vulnerability Information Extraction Model) is a tool used for automatically extracting vulnerable software names and versions from unstructured reports. It combines a Named Entity Recognition (NER) model and a Relation Extraction (RE) model. The goal is to enable the possibility to continuously monitor different vulnerability reporting websites and periodically generate a **diff** from the CVE/NVD entries. 
 
-More details can be found in our paper:
+More details can be found in our paper 
 ```
 Towards the Detection of Inconsistencies in Public Security Vulnerability Reports
 Ying Dong, Wenbo Guo, Yueqi Chen, Xinyu Xing, Yuqing Zhang, Gang Wang
 USENIX Security 2019
 ```
 
-## Dataset
-
-Our manually labeled dataset contains the CVE summaries and unstructured vulnerability reports of 5,193 CVE IDs, including [ExploitDB](https://www.exploit-db.com/), [SecurityFocus Forum](https://www.securityfocus.com/archive/1) and [Openwall](http://www.openwall.com/). The dataset covers all of the 13 categories of vulnerabilities provided in [cvedetails](https://www.cvedetails.com/vulnerabilities-by-types.php). Both NER data and RE data are included. 
-
-### NER data format
-For the NER dataset, each word in a report is assigned one of the three labels: vulnerable software name (`SN`), vulnerable software version (`SV`), or others (`O`). Each line is a word followed by its label. Sentences are seperated with a new line.
-```
-This O 
-PoC O 
-has O 
-been O 
-tested O 
-on O 
-Apple SN
-Watch SN 
-3 SV
-running O 
-WatchOS SN
-4.0.1 SV
-. O 
-```
-
-### RE data format
-For the RE dataset, we pair SN and SV entities by examining all the possible pairs within the same sentence. All combinations in the same sentence are assigned one of the two labels: `Y` and `N`. Each line contains with the index of the head entity and tail entity, the label, and the sentence. 
-```
-6 7 Y This PoC has been tested on Apple_Watch 3 runing WatchOS 4.0.1 .
-6 10 N This PoC has been tested on Apple_Watch 3 runing WatchOS 4.0.1 .
-9 10 Y This PoC has been tested on Apple_Watch 3 runing WatchOS 4.0.1 .
-7 9 N This PoC has been tested on Apple_Watch 3 runing WatchOS 4.0.1 .
-```
-
-### Data structure
-The data is organized by vulnerability category. It contains a large amount of data (3,448 CVE IDs) from one primary category (Memory Corruption) and a smaller amount of data (145 CVE IDs) from the other 12 categories to evaluate model transferability. 
-
-Among Memory Corruption data, `memc_test_dup.txt` and `memc_full_dup.txt` are used for measurement purposes, where the corresponding CVE ID and report type/link of each sentence is marked, and duplicate sentences might exist. The structure of RE data is similar to that of NER data.
-```
-/dataset/ner_data/memc_train.txt
-/dataset/ner_data/memc_test.txt
-/dataset/ner_data/memc_valid.txt
-/dataset/ner_data/memc_test_dup.txt
-/dataset/ner_data/memc_full_dup.txt
-```
-
-
 ## Requirements
 
-The tool is implemented in Python 3. To install needed packages use:
+The tool is implemented in Python 3. To install needed packages use
 ```
 pip3 install -r requirements.txt
-```
-
-## Named Entity Recognition Model
-
-VIEM utilizes the state-of-the-art Named Entity Recognition (NER) model to identify the entities of our interest, i.e., the name and versions of the vulnerable software, those of vulnerable components and those of underlying software systems that vulnerable software depends upon.
-
-### Training
-
-`train_NER.py` is used for training the NER model, and accepts the following inputs:
-```
-python3 ner_model/train_NER.py --category <category> 
-```
-The flag `category` is one of the 13 vulnerability categories in the list:
-```
-['memc', 'bypass', 'csrf', 'dirtra', 'dos', 'execution', 'fileinc', 'gainpre', 'httprs', 'infor', 'overflow', 'sqli', 'xss']
-```
-When the category is not 'memc', the script will load the pre-trained model for Memory Corruption and transfer the model to the new category.
-
-
-### Testing
-
-`test_NER.py` is used for testing the NER model, and accepts the following inputs:
-```
-python3 ner_model/test_NER.py --category <category> --input_type <input_type> --transfer <bool> --gaze <bool>
-```
-The flag `input_type` specifies the type of the input test data, and could be `test`, `test_dup` and `full_dup`, corresponding to `category_test.txt`, `category_test_dup.txt` and `category_full_dup.txt` respectively. `transfer` indicates whether to use the transferred model or not. `gaze` means whether to use gazetteer or not.
-
-
-## Relation Extraction Model
-
-With the extracted entities, the next task of VIEM is to pair identified entities accordingly. VIEM first goes through all the possible combinations between versions and software names. Then, it utilizes a Relation Extraction (RE) model to determine the most possible combinations and deems them as the correct pairs of entities.
-
-### Training
-
-`train_RE.py` is used for training the RE model. Its usage is similar to that of `train_NER.py`.
-
-### Testing
-
-`test_RE.py` is used for testing the NER model, and accepts the following inputs:
-```
-python3 re_model/test_RE.py --category <category> --transfer <bool> --input_type <input_type> --use_ner_output <bool>
-```
-The flag `use_ner_output` indicates whether to use NER model output or not, and is set to True when evaluate end-to-end performance.
-
-When test `category_test_dup.txt` or `category_full_dup.txt`, RE generate a dictionary of name-version pairs for all the CVE IDs involved in the test data as below:
-```
-{
-  'CVE-2014-7285': { 
-       		     'cve': {
-			      'Web Gateway': ['before 5.2.2']
-			    },
-       		     'edb': {
-			      'Web Gateway': ['5', '5.1.1', '5.2.1’']
-			    },
-		  }
-...
-}
-```
-
-## Measurement
-
-The dictionary of name-version pairs generated by RE model are then enriched with name-version pairs in structured reports. The versions are mapped to discrete data, and are matched against NVD/CVE versions.
-
-```
-{
-  'CVE-2014-7285': { 
-      		     'nvd: {
-			      'web gateway': ['5.0', '5.0.1', '5.0.2', '5.0.3', '5.0.3.18', '5.1', '5.1.1', '5.2', '5.2.1']
-			    },
-        	     'cve': 
-		     	    { 'pair': {
-			    	 	'web gateway': ['5.0', '5.0.1', '5.0.2', '5.0.3', '5.0.3.18', '5.1', '5.1.1', '5.2', '5.2.1']
-                            	       },
-			      'loose_match': [True, 'Exact'],
-			      'strict_match': True
-			    }	
-		      'edb': 
-		     	    { 'pair': {
-			    	 	'web gateway': ['5', ‘5.1.1’, ‘5.2.1’]
-                            	       },
-			      'loose_match': [True, 'Overclaim'],
-			      'strict_match': False
-			    }
-		      'securityfocus': 
-		     	    { 'pair': {
-			    	 	'web gateway': ['4.5', '4.5.0.376', '5.0', '5.0.1', '5.0.3']
-                            	       },
-			      'loose_match': [False, ''],
-			      'strict_match': False
-			    }
-		      'securitytracker': 
-		     	    { 'pair': {
-			    	 	'web gateway': ['5.0', '5.0.1', '5.0.2', '5.0.3', '5.0.3.18', '5.1', '5.1.1', '5.2', '5.2.1']
-                            	       },
-			      'loose_match': [True, 'Exact'],
-			      'strict_match': True
-			    }
-...
-}
 ```
 
 ## Reference
@@ -170,3 +27,152 @@ The dictionary of name-version pairs generated by RE model are then enriched wit
 * [thunlp/Tensorflow-NRE](https://github.com/thunlp/TensorFlow-NRE)
 
 
+
+
+
+
+
+
+
+
+
+
+
+# Files
+
+StackEdit stores your files in your browser, which means all your files are automatically saved locally and are accessible **offline!**
+
+## Create files and folders
+
+The file explorer is accessible using the button in left corner of the navigation bar. You can create a new file by clicking the **New file** button in the file explorer. You can also create folders by clicking the **New folder** button.
+
+## Switch to another file
+
+All your files are listed in the file explorer. You can switch from one to another by clicking a file in the list.
+
+## Rename a file
+
+You can rename the current file by clicking the file name in the navigation bar or by clicking the **Rename** button in the file explorer.
+
+## Delete a file
+
+You can delete the current file by clicking the **Remove** button in the file explorer. The file will be moved into the **Trash** folder and automatically deleted after 7 days of inactivity.
+
+## Export a file
+
+You can export the current file by clicking **Export to disk** in the menu. You can choose to export the file as plain Markdown, as HTML using a Handlebars template or as a PDF.
+
+
+# Synchronization
+
+Synchronization is one of the biggest features of StackEdit. It enables you to synchronize any file in your workspace with other files stored in your **Google Drive**, your **Dropbox** and your **GitHub** accounts. This allows you to keep writing on other devices, collaborate with people you share the file with, integrate easily into your workflow... The synchronization mechanism takes place every minute in the background, downloading, merging, and uploading file modifications.
+
+There are two types of synchronization and they can complement each other:
+
+- The workspace synchronization will sync all your files, folders and settings automatically. This will allow you to fetch your workspace on any other device.
+	> To start syncing your workspace, just sign in with Google in the menu.
+
+- The file synchronization will keep one file of the workspace synced with one or multiple files in **Google Drive**, **Dropbox** or **GitHub**.
+	> Before starting to sync files, you must link an account in the **Synchronize** sub-menu.
+
+## Open a file
+
+You can open a file from **Google Drive**, **Dropbox** or **GitHub** by opening the **Synchronize** sub-menu and clicking **Open from**. Once opened in the workspace, any modification in the file will be automatically synced.
+
+## Save a file
+
+You can save any file of the workspace to **Google Drive**, **Dropbox** or **GitHub** by opening the **Synchronize** sub-menu and clicking **Save on**. Even if a file in the workspace is already synced, you can save it to another location. StackEdit can sync one file with multiple locations and accounts.
+
+## Synchronize a file
+
+Once your file is linked to a synchronized location, StackEdit will periodically synchronize it by downloading/uploading any modification. A merge will be performed if necessary and conflicts will be resolved.
+
+If you just have modified your file and you want to force syncing, click the **Synchronize now** button in the navigation bar.
+
+> **Note:** The **Synchronize now** button is disabled if you have no file to synchronize.
+
+## Manage file synchronization
+
+Since one file can be synced with multiple locations, you can list and manage synchronized locations by clicking **File synchronization** in the **Synchronize** sub-menu. This allows you to list and remove synchronized locations that are linked to your file.
+
+
+# Publication
+
+Publishing in StackEdit makes it simple for you to publish online your files. Once you're happy with a file, you can publish it to different hosting platforms like **Blogger**, **Dropbox**, **Gist**, **GitHub**, **Google Drive**, **WordPress** and **Zendesk**. With [Handlebars templates](http://handlebarsjs.com/), you have full control over what you export.
+
+> Before starting to publish, you must link an account in the **Publish** sub-menu.
+
+## Publish a File
+
+You can publish your file by opening the **Publish** sub-menu and by clicking **Publish to**. For some locations, you can choose between the following formats:
+
+- Markdown: publish the Markdown text on a website that can interpret it (**GitHub** for instance),
+- HTML: publish the file converted to HTML via a Handlebars template (on a blog for example).
+
+## Update a publication
+
+After publishing, StackEdit keeps your file linked to that publication which makes it easy for you to re-publish it. Once you have modified your file and you want to update your publication, click on the **Publish now** button in the navigation bar.
+
+> **Note:** The **Publish now** button is disabled if your file has not been published yet.
+
+## Manage file publication
+
+Since one file can be published to multiple locations, you can list and manage publish locations by clicking **File publication** in the **Publish** sub-menu. This allows you to list and remove publication locations that are linked to your file.
+
+
+# Markdown extensions
+
+StackEdit extends the standard Markdown syntax by adding extra **Markdown extensions**, providing you with some nice features.
+
+> **ProTip:** You can disable any **Markdown extension** in the **File properties** dialog.
+
+
+## SmartyPants
+
+SmartyPants converts ASCII punctuation characters into "smart" typographic punctuation HTML entities. For example:
+
+|                |ASCII                          |HTML                         |
+|----------------|-------------------------------|-----------------------------|
+|Single backticks|`'Isn't this fun?'`            |'Isn't this fun?'            |
+|Quotes          |`"Isn't this fun?"`            |"Isn't this fun?"            |
+|Dashes          |`-- is en-dash, --- is em-dash`|-- is en-dash, --- is em-dash|
+
+
+## KaTeX
+
+You can render LaTeX mathematical expressions using [KaTeX](https://khan.github.io/KaTeX/):
+
+The *Gamma function* satisfying $\Gamma(n) = (n-1)!\quad\forall n\in\mathbb N$ is via the Euler integral
+
+$$
+\Gamma(z) = \int_0^\infty t^{z-1}e^{-t}dt\,.
+$$
+
+> You can find more information about **LaTeX** mathematical expressions [here](http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference).
+
+
+## UML diagrams
+
+You can render UML diagrams using [Mermaid](https://mermaidjs.github.io/). For example, this will produce a sequence diagram:
+
+```mermaid
+sequenceDiagram
+Alice ->> Bob: Hello Bob, how are you?
+Bob-->>John: How about you John?
+Bob--x Alice: I am good thanks!
+Bob-x John: I am good thanks!
+Note right of John: Bob thinks a long<br/>long time, so long<br/>that the text does<br/>not fit on a row.
+
+Bob-->Alice: Checking with John...
+Alice->John: Yes... John, how are you?
+```
+
+And this will produce a flow chart:
+
+```mermaid
+graph LR
+A[Square Rect] -- Link text --> B((Circle))
+A --> C(Round Rect)
+B --> D{Rhombus}
+C --> D
+```
