@@ -5,26 +5,22 @@ logging.basicConfig(format='%(asctime)s: %(levelname)s: %(message)s')
 logging.root.setLevel(level=logging.INFO)
 
 
-def get_vocab_size():
-    return 531692
-
-
 class Settings(object):
     def __init__(self):
-        self.vocab_size = get_vocab_size()
+        self.vocab_size = 531692
         self.num_steps = 48  # 70
         self.num_epochs = 1500
-        self.num_classes = 13
+        self.num_classes = 2
         self.gru_size = 100
         self.keep_prob = 0.5
         self.num_layers = 2  # 2
         self.pos_size = 10
         self.pos_num = 123
         # the number of entity pairs of each batch during training or testing
-        self.big_num = 20
+        self.big_num = 80
         self.char_filter_width = 7
         self.char_embedding_dim = 50
-        self.n_characters = 93# 128
+        self.n_characters = 93  # 128
 
 
 def character_embedding_network(char_placeholder, n_characters, char_embedding_dim, transfer, reverse=False, filter_width=7):
@@ -35,12 +31,10 @@ def character_embedding_network(char_placeholder, n_characters, char_embedding_d
     if reverse:
         vs_name += '_reverse'
     with tf.variable_scope(vs_name):
-        # Character embedding layer
         c_emb = tf.nn.embedding_lookup(char_emb_var, char_placeholder)
         if reverse:
             c_emb = tf.nn.embedding_lookup(char_emb_var, tf.reverse(char_placeholder, [1]))
-        # Character embedding network
-    
+
         char_conv = tf.layers.conv2d(c_emb, char_embedding_dim, (1, filter_width), padding='same', name='char_conv')
         char_emb = tf.reduce_max(char_conv, axis=2)
     return char_emb
@@ -64,7 +58,6 @@ class GRU:
         self.gru_size = gru_size = settings.gru_size
         self.big_num = big_num = settings.big_num
 
-        logging.info('1 gru init begin ****************************')
         self.input_char = tf.placeholder(dtype=tf.int32, shape=[None, num_steps, None], name='input_char')
         self.input_word = tf.placeholder(dtype=tf.int32, shape=[None, num_steps], name='input_word')
         self.input_pos1 = tf.placeholder(dtype=tf.int32, shape=[None, num_steps], name='input_pos1')
@@ -86,12 +79,10 @@ class GRU:
                                             reverse=True,
                                             filter_width=settings.char_filter_width)
 
-        # char_embedding = tf.get_variable(initializer=char_embeddings, name='char_embedding', trainable=not transfer)
         word_embedding = tf.get_variable(initializer=word_embeddings, name='word_embedding', trainable=not transfer)
         pos1_embedding = tf.get_variable('pos1_embedding', [settings.pos_num, settings.pos_size], trainable=not transfer)
         pos2_embedding = tf.get_variable('pos2_embedding', [settings.pos_num, settings.pos_size], trainable=not transfer)
 
-        logging.info(' 2 gru init begin ****************************')
         attention_w = tf.get_variable('attention_omega', [gru_size, 1], trainable=not transfer)
         sen_a = tf.get_variable('attention_A', [gru_size], trainable=not transfer)
         sen_r = tf.get_variable('query_r', [gru_size, 1], trainable=not transfer)
@@ -101,7 +92,6 @@ class GRU:
         # gru_cell_forward = tf.contrib.rnn.GRUCell(gru_size)
         # gru_cell_backward = tf.contrib.rnn.GRUCell(gru_size)
 
-        logging.info('3 gru init begin ****************************')
         # if is_training and settings.keep_prob < 1:
         #     gru_cell_forward = tf.contrib.rnn.DropoutWrapper(gru_cell_forward, output_keep_prob=settings.keep_prob)
         #     gru_cell_backward = tf.contrib.rnn.DropoutWrapper(gru_cell_backward, output_keep_prob=settings.keep_prob)
@@ -126,7 +116,6 @@ class GRU:
         self._initial_state_forward = cell_forward.zero_state(total_num, tf.float32)
         self._initial_state_backward = cell_backward.zero_state(total_num, tf.float32)
 
-        logging.info('4 gru init begin ****************************')
         # embedding layer
         print(word_embedding.shape)
 
@@ -144,7 +133,6 @@ class GRU:
 
         outputs_forward = []
 
-        logging.info('5 gru init begin ****************************')
         state_forward = self._initial_state_forward
 
         # Bi-GRU layer
@@ -157,7 +145,6 @@ class GRU:
 
         outputs_backward = []
 
-        logging.info('6 gru init begin ****************************')
         state_backward = self._initial_state_backward
         with tf.variable_scope('GRU_BACKWARD') as scope:
             for step in range(num_steps):
@@ -166,7 +153,6 @@ class GRU:
                 (cell_output_backward, state_backward) = cell_backward(inputs_backward[:, step, :], state_backward)
                 outputs_backward.append(cell_output_backward)
 
-        logging.info('7 gru init begin ****************************')
         output_forward = tf.reshape(tf.concat(axis=1, values=outputs_forward), [total_num, num_steps, gru_size])
         output_backward = tf.reverse(
             tf.reshape(tf.concat(axis=1, values=outputs_backward), [total_num, num_steps, gru_size]),
@@ -178,7 +164,6 @@ class GRU:
             tf.reshape(tf.matmul(tf.reshape(tf.tanh(output_h), [total_num * num_steps, gru_size]), attention_w),
                        [total_num, num_steps])), [total_num, 1, num_steps]), output_h), [total_num, gru_size])
 
-        logging.info('batch testing begin ****************************')
         # sentence-level attention layer
         for i in range(big_num):
 
@@ -210,13 +195,11 @@ class GRU:
                     tf.reduce_mean(tf.cast(tf.equal(self.predictions[i], tf.argmax(self.input_y[i], 0)), "float"),
                                    name="accuracy"))
 
-        logging.info('10 gru init begin ****************************')
         tf.summary.scalar('loss', self.total_loss)
         # regularization
         self.l2_loss = tf.contrib.layers.apply_regularization(regularizer=tf.contrib.layers.l2_regularizer(0.0001),
                                                               weights_list=tf.trainable_variables())
 
-        logging.info('11 gru init begin ****************************')
         self.final_loss = self.total_loss + self.l2_loss
         tf.summary.scalar('l2_loss', self.l2_loss)
         tf.summary.scalar('final_loss', self.final_loss)

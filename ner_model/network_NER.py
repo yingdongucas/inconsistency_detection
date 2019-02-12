@@ -162,7 +162,6 @@ class CRFDecodeLayer(lasagne.layers.Layer):
         pys = pys.dimshuffle(1, 0)[:, :: -1]
         # pys : inst * (time - 1)
         return T.concatenate([pys, init_py.dimshuffle(0, 'x')], axis=1)
-        # return T.concatenate([pys, init_py.dimshuffle(0, 'x')], axis = 1), T.concatenate([init_score.dimshuffle('x', 0, 1), scores], axis=0), scores, init_score.dimshuffle('x', 0, 1), backs, pys, init_py, init_py.dimshuffle(0, 'x'), scores, init_back, init_score
 
 
 class ElemwiseMergeLayer(lasagne.layers.MergeLayer):
@@ -320,13 +319,8 @@ class cnn_rnn:
         self.embedding = l_word.W
         if REDUCE:
             l_word = lasagne.layers.ReshapeLayer(l_word, (-1, [2]))
-            # l_word = lasagne.layers.DenseLayer(l_word, self.reduce_size, nonlinearity = lasagne.nonlinearities.linear)
-
             l_word = lasagne.layers.EmbeddingLayer(l_word, self.word_cnt, self.w_embedding_size,
                                                    W=lasagne.init.Normal(std=1e-3))
-            # l_word = lasagne.layers.EmbeddingLayer(l_word, self.word_cnt, self.w_embedding_size, W = lasagne.init.GlorotUniform('relu'))
-            # l_word = lasagne.layers.EmbeddingLayer(l_word, self.word_cnt, self.w_embedding_size, W = lasagne.init.HeNormal('relu'))
-            # l_word = lasagne.layers.EmbeddingLayer(l_word, self.word_cnt, self.w_embedding_size, W = lasagne.init.Uniform(std = 1e-3))
 
             self.trans = l_word.W
             l_word = lasagne.layers.ReshapeLayer(l_word, (-1, self.x.shape[1], [1]))
@@ -374,10 +368,6 @@ class cnn_rnn:
         l_cnn_mask = lasagne.layers.DimshuffleLayer(l_mask, (0, 'x', 1))
         l_cnn = ElemwiseMergeLayer([l_cnn, l_cnn_mask], T.mul)
         ls = []
-        # for f_size in self.f_sizes:
-        #     ls.append(lasagne.layers.Conv1DLayer(l_cnn, self.filter_num, f_size, pad = 'same'))
-        # for i in range(len(ls)):
-        #     ls[i] = lasagne.layers.DimshuffleLayer(ls[i], (0, 2, 1))
 
         l_1 = lasagne.layers.GRULayer(l, self.hidden_size, mask_input=l_mask)
         l = lasagne.layers.GRULayer(l, self.hidden_size, mask_input=l_mask, backwards=True)
@@ -472,18 +462,6 @@ class cnn_rnn:
             s_gaze = tgaze[i: j] if self.use_gaze else None
             s_lemma = tlemma[i: j] if self.use_lemma else None
             s_pos = tpos[i: j] if self.use_pos else None
-            '''
-            if reload_model_path is not None:
-                self.build()
-                self.load_params(reload_model_path)
-            '''
-
-            '''
-            prev_params = lasagne.layers.get_all_param_values(self.l)
-            pys.append(self.test_fn(s_x, s_m, s_wx, s_cm, s_gaze, s_lemma, s_pos))
-            current_params = lasagne.layers.get_all_param_values(self.l)
-            pdb.set_trace()
-            '''
 
             pys.append(self.test_fn(s_x, s_m, s_wx, s_cm, s_gaze, s_lemma, s_pos))
             i = j
