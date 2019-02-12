@@ -5,18 +5,16 @@ import os
 
 # need to modify:
 root_path = '/home/yzd57/' if os.path.exists('/home/yzd57/') else '/Users/yingdong/Desktop/'
-
-project_path = root_path + 'ying/data/'
+project_path = root_path + 'ying/release/'
 data_write_path = root_path + 'ying/data/'
 
-ner_data_suffix = '.txt_cut_199'
+# ================= dataset path ====================
 
-labeled_data_dir = 'ner_re_dataset'
+data_suffix = '.txt'
+labeled_data_dir = 'dataset'
 
-labeled_ner_data_input_path = project_path + labeled_data_dir + '/ner_data_input/'
-labeled_re_data_input_path = project_path + labeled_data_dir + '/re_data_input/'
-
-# need to modify:
+labeled_ner_data_input_path = project_path + labeled_data_dir + '/ner_data/'
+labeled_re_data_input_path = project_path + labeled_data_dir + '/re_data/'
 
 # ================= re npy path ====================
 
@@ -56,21 +54,21 @@ model_path = data_write_path + 'models/'
 
 ner_model_prefix = 'NER_model_'
 ner_model_path = model_path + 'ner_model/'
-ner_model_path_before_transfer = ner_model_path + 'before_transfer/'
-ner_model_path_after_transfer = ner_model_path + 'after_transfer/'
+# ner_model_path_before_transfer = ner_model_path + 'before_transfer/'
+# ner_model_path_after_transfer = ner_model_path + 'after_transfer/'
 
 re_model_prefix = 'RE_model_'
 re_model_path = model_path + 're_model/'
-re_model_path_before_transfer = re_model_path + 'before_transfer/'
-re_model_path_after_transfer = re_model_path + 'after_transfer/'
+# re_model_path_before_transfer = re_model_path + 'before_transfer/'
+# re_model_path_after_transfer = re_model_path + 'after_transfer/'
 
 # ================= dataset related ====================
 
-software_label = 'S-vulnerable_software'
-version_label = 'S-vulnerable_version'
+software_label = 'SN'
+version_label = 'SV'
 labels = [software_label, version_label, 'O']
-relation2id = {'y': 1, 'n': 0}
-id2relation = {1: 'y', 0: 'n'}
+relation2id = {'Y': 1, 'N': 0}
+id2relation = {1: 'Y', 0: 'N'}
 cat_list = ['memc', 'bypass', 'csrf', 'dirtra', 'dos', 'execution', 'fileinc', 'gainpre', 'httprs', 'infor', 'overflow',
             'sqli', 'xss']
 num_cat_dict = dict()

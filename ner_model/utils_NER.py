@@ -8,16 +8,16 @@ import config, utils
 from ner_model.initial_NER import extract_ent
 
 
-def get_ner_model_from_dir(save_path):
+def get_ner_model_from_dir(save_path, category):
     f_list = os.listdir(save_path)
     for f in f_list:
-        if f.find('_') != -1:
+        if f.find(config.ner_model_prefix + category + '_') != -1:
             return f
 
 
 def evaluate_each_class(py, test_data_dic, y_, m_, file_result=None, debug=False, apply_rule=True,
                         debug_gazetteer=False):
-    CAT = [config.software_label[2:], config.version_label[2:]]
+    CAT = ['N','V']
     if debug_gazetteer:
         with open('evaluate_each_class_params.py', 'w') as f_write:
             f_write.write('py = ' + str(py) + '\n\n')
@@ -49,10 +49,10 @@ def evaluate_each_class(py, test_data_dic, y_, m_, file_result=None, debug=False
                     predicted_label = 'O'
 
                 test_data_dic[td][1] = predicted_label
-                test_data_dic[td][2] = 'O'
+                # test_data_dic[td][2] = 'O'
 
                 one_sentence.append([td - 1, test_data_dic[td][0], predicted_label])
-                if len(test_data_dic[td]) == 7:
+                if len(test_data_dic[td]) in [3, 7]:
                     sentence_list.append(one_sentence)
                     one_sentence = []
 
@@ -126,16 +126,16 @@ def print_and_write_test_results(test_data_dic, y_size, py_size, y, py, file_res
             predicted_label = 'O'
 
         test_data_dic[td][1] = predicted_label
-        test_data_dic[td][2] = 'O'
+        # test_data_dic[td][2] = 'O'
         print_line = utils.transform_list_to_str(test_data_dic[td][:6])
 
         if file_result is not None:
             file_result.write(print_line + '\n')
-            if len(test_data_dic[td]) == 7:
+            if len(test_data_dic[td]) in [3, 7]:
                 file_result.write('\n')
         if debug:
             if ground_truth_label != predicted_label:
                 print_line += ' ------------ ' + ground_truth_label
             print(print_line)
-            if len(test_data_dic[td]) == 7:
+            if len(test_data_dic[td]) in [3, 7]:
                 print()

@@ -106,7 +106,7 @@ def init_test_data(re_origin_test_data_name_read, generate_from_ner_output_path=
         # if category_separate_idx is None:
             origin_test_data_path_and_name = generate_from_ner_output_path + re_origin_test_data_name_read
             # origin_test_data_path_and_name = origin_test_data_path_and_name.replace('_gaze', '')
-            generate_re_data_for_ner_output(origin_test_data_path_and_name + config.ner_data_suffix, origin_test_data_path_and_name, config.re_max_len)
+            generate_re_data_for_ner_output(origin_test_data_path_and_name + config.data_suffix, origin_test_data_path_and_name, config.re_max_len)
         # else:
         #     origin_test_data_path_and_name = generate_from_ner_output_path + re_origin_test_data_name_read + '_' + str(category_separate_idx)
         #     ner_data_path_and_name = generate_from_ner_output_path + re_origin_test_data_name_read + commons.ner_data_suffix + '_' + str(category_separate_idx)
@@ -162,7 +162,7 @@ def init_test_data(re_origin_test_data_name_read, generate_from_ner_output_path=
             rel_e2 = pos_embed(i - en2pos)
             output.append([word, rel_e1, rel_e2])
         if en1_en2_appear != 2:
-            logging.info('error append pos test', en1_en2_appear, en1pos, en2pos, relation)
+            logging.info('error append pos test ' + str(en1_en2_appear) + ' ' + str(en1pos) + ' ' + str(en2pos) + ' ' + str(relation))
 
         en1_en2_appear = 0
         for i in range(min(config.re_max_len, len(sentence))):
@@ -193,7 +193,7 @@ def init_test_data(re_origin_test_data_name_read, generate_from_ner_output_path=
 
             output[i - en1_en2_appear][0] = word
         if en1_en2_appear != 2:
-            logging.info('error append word test', en1_en2_appear, en1pos, en2pos, relation)
+            logging.info('error append word test ' + str(en1_en2_appear) + ' ' + str(en1pos) + ' ' + str(en2pos) + ' ' + str(relation))
 
         gt_y_list.append(relation)
         test_sen[tup].append(output)
@@ -276,7 +276,7 @@ def init_train_data(re_origin_train_data_name_read):
             rel_e2 = pos_embed(i - en2pos)
             output.append([word, rel_e1, rel_e2])
         if en1_en2_appear_1 != 2:
-            logging.info('error append pos  ', en1_en2_appear_1, relation, en1pos, en2pos)
+            logging.info('error append pos ' + str(en1_en2_appear_1) + ' ' + str(en1pos) + ' ' + str(en2pos) + ' ' + str(relation))
 
         en1_en2_appear_2 = 0
         for i in range(min(config.re_max_len, len(sentence))):
@@ -303,7 +303,8 @@ def init_train_data(re_origin_train_data_name_read):
             output[i-en1_en2_appear_2][0] = word
 
         if en1_en2_appear_2 != 2:
-            logging.info('error append word  ', en1_en2_appear_2, relation, en1pos, en2pos)
+            logging.info('error append word ' + str(en1_en2_appear_2) + ' ' + str(en1pos) + ' ' + str(en2pos) + ' ' + str(relation))
+
         train_sen[tup][label_tag].append(output)
 
     train_x = []
@@ -468,7 +469,7 @@ def judge_wordchar2id_vec_npy_exists():
 
 def generate_train_npy_data(category):
     judge_wordchar2id_vec_npy_exists()
-    train_data = category + '_train'
+    train_data = category + '_train' + config.data_suffix
 
     train_x_npy, train_y_npy = init_train_data(train_data)
     train_char_npy, train_word_npy, train_pos1_npy, train_pos2_npy = separate(train_x_npy)
@@ -492,6 +493,9 @@ def generate_test_npy_data(category, duplicate=False, generate_from_ner_output_p
     #     test_data_name = category + test_flg + '_duplicate'
     if gaze:
         test_data_name += '_gaze'
+
+    test_data_name += config.data_suffix
+
     test_x_npy, test_y_npy, test_txt_file_path_and_name = init_test_data(test_data_name, generate_from_ner_output_path, category_separate_idx=category_separate_idx)
     test_char_npy, test_word_npy, test_pos1_npy, test_pos2_npy = separate(test_x_npy)
 

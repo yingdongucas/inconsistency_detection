@@ -14,8 +14,9 @@ def generate_line_dict_from_ner_data(ner_data_file):
         inputs = line.strip().split()
         if len(inputs) >= 2:
             line_number += 1
-            word, ner_label, re_label, cve_id, tc, link = inputs
-            line_dict[line_number] = [word, ner_label, re_label, cve_id, tc, link]
+            # word, ner_label, re_label, cve_id, tc, link = inputs
+            # line_dict[line_number] = [word, ner_label, re_label, cve_id, tc, link]
+            line_dict[line_number] = inputs
         else:
             if line_number in line_dict:
                 line_dict[line_number].append('')
@@ -28,8 +29,7 @@ def generate_line_dict_from_ner_data(ner_data_file):
 def label_decode(label):
     if label == 'O':
         return 'O', 'O'
-    s = label.split('-')
-    return s[0], "-".join(s[1:])
+    return label[0], label[1]
 
 
 def process(word):
@@ -165,7 +165,7 @@ def extract_ent(y, m):
             i += 1
             continue
         c1, c2 = label_decode(config.labels[y[i]])
-        if c1 in ['O', 'I', 'E']:
+        if c1 == 'O':
             i += 1
             continue
         if c1 == 'S':
@@ -184,3 +184,8 @@ def read_word2embedding():
         inputs = line.strip().split()
         word2embedding[words[i]] = np.array([float(e) for e in inputs], dtype = np.float32)
     return word2embedding
+
+
+if __name__ == '__main__':
+    generate_line_dict_from_ner_data('/Users/yingdong/Desktop/release/dataset/ner_data/sqli_test.txt')
+    # generate_line_dict_from_ner_data('/Users/yingdong/Desktop/vulnerability_data/project_data/ner_re_dataset/ner_data_input/sqli_test.txt_cut_199')

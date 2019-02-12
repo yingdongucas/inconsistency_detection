@@ -136,10 +136,8 @@ def check_dir():
                      labeled_ner_data_output_before_transfer_path,
                      labeled_re_data_output_after_transfer_path,
                      labeled_re_data_output_before_transfer_path,
-                     ner_model_path_before_transfer,
-                     ner_model_path_after_transfer,
-                     re_model_path_before_transfer,
-                     re_model_path_after_transfer,
+                     ner_model_path,
+                     re_model_path,
                      sh_output_path,
                      ]:
         if os.path.exists(dir_name):

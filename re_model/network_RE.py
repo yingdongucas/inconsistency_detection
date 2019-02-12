@@ -6,7 +6,7 @@ logging.root.setLevel(level=logging.INFO)
 
 
 def get_vocab_size():
-    return 590322
+    return 531692
 
 
 class Settings(object):

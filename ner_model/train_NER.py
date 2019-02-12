@@ -15,7 +15,6 @@ parser = argparse.ArgumentParser()
 from utils_NER import get_ner_model_from_dir, evaluate_each_class
 from initial_NER import generate_line_dict_from_ner_data, read_word2embedding, \
     read_char_data, read_data, create_word_index, create_char_index
-import network_NER
 
 parser.add_argument('--cat_num', type=int)
 parser.add_argument('--gru', type=int)
@@ -44,19 +43,20 @@ char_double_layer = args.char_double_layer
 char_rnn = args.char_rnn
 
 os.environ["THEANO_FLAGS"] = "mode=FAST_RUN,device=cuda" + str(gru) + ",floatX=float32"
+import network_NER
 
 
 def train_ner():
     category = config.num_cat_dict[cat_num]
 
-    TRAIN_DATA = config.labeled_ner_data_input_path + category + '_train' + config.ner_data_suffix
+    TRAIN_DATA = config.labeled_ner_data_input_path + category + '_train' + config.data_suffix
     # TRAIN_DATA = include_valid_set()
-    TEST_DATA = config.labeled_ner_data_input_path + category + '_test' + config.ner_data_suffix
+    TEST_DATA = config.labeled_ner_data_input_path + category + '_test' + config.data_suffix
 
     transfer = not (category == 'memc')
-    save_path = config.ner_model_path_before_transfer
-    if transfer:
-        save_path = config.ner_model_path_after_transfer
+    # save_path = config.ner_model_path_before_transfer
+    # if transfer:
+    #     save_path = config.ner_model_path_after_transfer
 
     logging.info('batch_size: ' + str(batch_size))
     logging.info('dropout_rate: ' + str(dropout_rate))
@@ -81,11 +81,11 @@ def train_ner():
 
     model = None
     if None in [batch_size, dropout_rate, char_hidden_size, hidden_size, double_layer, char_double_layer, char_rnn]:
-        model = network_NER.cnn_rnn(char_cnt, len(config.labels), word_cnt, save_path, category, use_crf=True,
+        model = network_NER.cnn_rnn(char_cnt, len(config.labels), word_cnt, config.ner_model_path, category, use_crf=True,
                                     transfer=transfer
                                     )
     else:
-        model = network_NER.cnn_rnn(char_cnt, len(config.labels), word_cnt, save_path, category, use_crf=True,
+        model = network_NER.cnn_rnn(char_cnt, len(config.labels), word_cnt, config.ner_model_path, category, use_crf=True,
                                     batch_size=batch_size, dropout_rate=dropout_rate,
                                     char_hidden_size=char_hidden_size, hidden_size=hidden_size,
                                     double_layer=double_layer, char_double_layer=char_double_layer, char_rnn=char_rnn,
@@ -101,9 +101,9 @@ def train_ner():
     model.build()
     
     if transfer:
-        model_name = get_ner_model_from_dir(config.ner_model_path_before_transfer)
+        model_name = get_ner_model_from_dir(config.ner_model_path, 'memc')
         logging.info('teacher model is ' + model_name)
-        model.load_params(config.ner_model_path_before_transfer + model_name)
+        model.load_params(config.ner_model_path + model_name)
     
     word2embedding = read_word2embedding()
 

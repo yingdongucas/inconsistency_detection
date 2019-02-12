@@ -1,5 +1,4 @@
 import os, sys, inspect
-import xml.etree.ElementTree
 
 from xml.dom import minidom
 

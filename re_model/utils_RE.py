@@ -1,9 +1,13 @@
-from numpy import np
+import numpy as np
 import os, sys, inspect
 current_dir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 parent_dir = os.path.dirname(current_dir)
 sys.path.insert(0, parent_dir)
 import config
+
+import logging
+logging.basicConfig(format='%(asctime)s: %(levelname)s: %(message)s')
+logging.root.setLevel(level=logging.INFO)
 
 
 def get_model_list_from_re_model_dir(model_dir, category, transfer):
@@ -37,7 +41,7 @@ def compute_re_prediction_on_ner_output_with_gt(pd_txt_file, pd_array, gt_txt_fi
         pd_txt_lines = f_pd_txt.readlines()
 
     if len(pd_txt_lines) != len(pd_list):
-        logging.info('ERROR in pd txt file!')
+        print('ERROR in pd txt file!')
         return
 
     with open(gt_txt_file) as f_gt_txt:
@@ -226,7 +230,7 @@ def get_separate_cat_file_list(ner_output_path, category_list, test_flag):
     separate_cat_file_list = []
     for category_ in category_list:
         for f in file_list:
-            prefix = category_ + test_flag + config.ner_data_suffix + '_'
+            prefix = category_ + test_flag + config.data_suffix + '_'
             if f.startswith(prefix):
                 if filter_cat_idx(category_, f.split('_')[-1]):
                     separate_cat_file_list.append([category_, f.split('_')[-1]])
