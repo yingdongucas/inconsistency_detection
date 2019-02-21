@@ -3,7 +3,7 @@ import os, sys, inspect
 current_dir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 parent_dir = os.path.dirname(current_dir)
 sys.path.insert(0, parent_dir)
-import config
+import config, utils
 
 import logging
 logging.basicConfig(format='%(asctime)s: %(levelname)s: %(message)s')
@@ -141,7 +141,7 @@ def performance_on_all_pairs(gt_data_label_dict, pd_data_label_dict):
     return pre, rec, f1, acc
 
 
-def convert_txt_line_to_data_label_dict(content_lines, relations=None):
+def convert_txt_line_to_data_label_dict(content_lines, relations=None, dup=False):
     data_label_dict = dict()
     idx = 0
     for content in content_lines:
@@ -152,7 +152,10 @@ def convert_txt_line_to_data_label_dict(content_lines, relations=None):
             relation = relations[idx]
         en1pos = int(content[0])
         en2pos = int(content[1])
-        sentence = content[3:-1]
+        sentence = content[3:]
+        if dup:
+            sentence = content[3:-1]
+
         data = utils.transform_list_to_str([en1pos] + [en2pos] + sentence)
         if data not in data_label_dict:
             data_label_dict[data] = relation

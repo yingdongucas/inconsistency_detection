@@ -22,8 +22,8 @@ from data_preparation import generate_prediction_and_gt_table
 import argparse
 
 
-def main_test(test_model_id, category, duplicate, model_path=config.re_model_path_before_transfer,
-              save_prediction=False, test_re_gru_idx='0', return_pd_and_gt_version_dict=False,
+def main_test(test_model_id, category, duplicate, model_path=config.re_model_path,
+              save_prediction=False, test_gru='0', return_pd_and_gt_version_dict=False,
               return_pd_version_dict=False,
               output_path=config.labeled_re_data_write_path,
               f_test_result_name=None,
@@ -35,7 +35,7 @@ def main_test(test_model_id, category, duplicate, model_path=config.re_model_pat
               ):
     tf_config = tf.ConfigProto()
     tf_config.gpu_options.allow_growth = True
-    tf_config.gpu_options.visible_device_list = str(test_re_gru_idx)
+    tf_config.gpu_options.visible_device_list = str(test_gru)
 
     FLAGS = tf.app.flags.FLAGS
 
@@ -164,7 +164,7 @@ def main_test(test_model_id, category, duplicate, model_path=config.re_model_pat
                         precision_gt, recall_gt, f1_gt, acc_gt, precision_all, recall_all, f1_all, acc_all, = compute_re_prediction_on_ner_output_with_gt(
                             test_txt_file_path_and_name, all_pred, commons.labeled_re_origin_data_input_path + test_data_name)
                     '''
-                    precision_gt, recall_gt, f1_gt, acc_gt, precision_all, recall_all, f1_all, acc_all, = compute_re_prediction_on_ner_output_with_gt(test_txt_file_path_and_name, all_pred, config.labeled_re_data_input_path + test_data_name.replace('_gaze', ''))
+                    precision_gt, recall_gt, f1_gt, acc_gt, precision_all, recall_all, f1_all, acc_all, = utils_RE.compute_re_prediction_on_ner_output_with_gt(test_txt_file_path_and_name, all_pred, config.labeled_re_data_input_path + test_data_name.replace('_gaze', ''))
 
 
                     logging.info('Accu = %.4f, F1 = %.4f, recall = %.4f, precision = %.4f)' % (acc_gt, f1_gt, recall_gt, precision_gt))
@@ -192,34 +192,36 @@ def test_re():
     parser.add_argument('--operation', type=str)
     parser.add_argument('--gazetteer', type=utils.str2bool)
     parser.add_argument('--re', type=utils.str2bool)
-    parser.add_argument('--cat_num', type=int)
+    parser.add_argument('--category', type=int)
 
     parser.add_argument('--case_idx', type=str)
 
     args = parser.parse_args()
 
-    transfer = args.transfer
+    # transfer = args.transfer
     test_data_duplicate = args.duplicate
-    test_re_gru_idx = args.gru
+    test_gru = args.gru
     test_ner_output_not_gt = args.neroutput
     # model_notes = args.model_notes
     labeled = args.labeled
     operation = args.operation
     gazetteer = args.gazetteer
     re = args.re
-    cat_num = args.cat_num
+    category_ = config.num_cat_dict[args.category]
     case_idx = args.case_idx
+
+    transfer = not (category_ == 'memc')
 
     logging.info('transfer: ' + str(transfer))
     logging.info('test_data_duplicate: ' + str(test_data_duplicate))
-    logging.info('test_re_gru_idx: ' + str(test_re_gru_idx))
+    logging.info('test_gru: ' + str(test_gru))
     logging.info('test_ner_output_not_gt: ' + str(test_ner_output_not_gt))
     # logging.info('model_notes: ' + str(model_notes))
     logging.info('labeled: ' + str(labeled))
     logging.info('operation: ' + str(operation))
     logging.info('gazetteer: ' + str(gazetteer))
     logging.info('re: ' + str(re))
-    logging.info('cat_num: ' + str(cat_num))
+    logging.info('category: ' + str(category_))
     logging.info('case_idx: ' + str(case_idx))
 
     # configure ner output path
@@ -243,11 +245,11 @@ def test_re():
             generate_from_ner_output_path = config.labeled_ner_data_output_after_transfer_path
 
     # configure model path
-    model_path = None
-    if transfer:
-        model_path = config.re_model_path_after_transfer
-    else:
-        model_path = config.re_model_path_before_transfer
+    model_path = config.re_model_path
+    # if transfer:
+    #     model_path = config.re_model_path_after_transfer
+    # else:
+    #     model_path = config.re_model_path_before_transfer
 
     # configure test cats, output path
     test_cat_list = None
@@ -313,7 +315,7 @@ def test_re():
         logging.info('category: ' + category)
         logging.info('model id: ' + model_id)
         test_result = main_test(model_id, category=category, duplicate=test_data_duplicate, model_path=model_path,
-                                save_prediction=False, test_re_gru_idx=test_re_gru_idx,
+                                save_prediction=False, test_gru=test_gru,
                                 return_pd_and_gt_version_dict=labeled,
                                 return_pd_version_dict=not labeled,
                                 output_path=output_path,

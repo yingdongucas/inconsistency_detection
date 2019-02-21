@@ -18,7 +18,7 @@ parser.add_argument('--duplicate', type=utils.str2bool)
 parser.add_argument('--gazetteer', type=utils.str2bool)
 parser.add_argument('--labeled', type=utils.str2bool)
 parser.add_argument('--case_idx', type=str)
-parser.add_argument('--cat_num', type=int)
+parser.add_argument('--category', type=int)
 
 args = parser.parse_args()
 
@@ -27,14 +27,14 @@ duplicate = args.duplicate
 gazetteer = args.gazetteer
 labeled = args.labeled
 case_idx = args.case_idx
-cat_num = args.cat_num
+category_ = args.category
 
 os.environ["THEANO_FLAGS"] = "mode=FAST_RUN,device=cuda" + str(gru) + ",floatX=float32"
 import network_NER
 
 
 def test_ner():
-    category = config.num_cat_dict[cat_num]
+    category = config.num_cat_dict[category_]
 
     word_index, word_cnt = create_word_index([config.hash_file])
     TRAIN_DATA = config.labeled_ner_data_input_path + category + '_train' + config.data_suffix

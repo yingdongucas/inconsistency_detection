@@ -11,6 +11,7 @@ import tqdm
 from test_RE import main_test
 
 from initial_RE import generate_train_npy_data, read_word_embedding
+from utils_RE import convert_txt_line_to_data_label_dict
 import os, sys, inspect
 current_dir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 parent_dir = os.path.dirname(current_dir)
@@ -19,37 +20,37 @@ import config, utils
 import argparse
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--transfer', type=utils.str2bool)
+# parser.add_argument('--transfer', type=utils.str2bool)
 parser.add_argument('--category', type=int)
-parser.add_argument('--re_model_for_duplicate', type=utils.str2bool)
-parser.add_argument('--train_re_gru_idx', type=int)
-parser.add_argument('--test_re_gru_idx', type=int)
+# parser.add_argument('--re_model_for_duplicate', type=utils.str2bool)
+parser.add_argument('--train_gru', type=int)
+parser.add_argument('--test_gru', type=int)
 
 args = parser.parse_args()
-transfer = args.transfer
-category = 'memc'
-if transfer:
-    category = config.num_cat_dict[args.category]
-    logging.info('category: ' + category)
-model_for_duplicate = args.re_model_for_duplicate
-train_re_gru_idx = args.train_re_gru_idx
-test_re_gru_idx = args.test_re_gru_idx
+# transfer = args.transfer
 
+category_ = config.num_cat_dict[args.category]
+transfer = not (category_ == 'memc')
+# model_for_duplicate = args.re_model_for_duplicate
+train_gru = args.train_gru
+test_gru = args.test_gru
+
+logging.info('category: ' + category_)
 logging.info('transfer: ' + str(transfer))
-logging.info('re_model_for_duplicate: ' + str(model_for_duplicate))
-logging.info('train_re_gru_idx: ' + str(train_re_gru_idx))
-logging.info('test_re_gru_idx: ' + str(test_re_gru_idx))
+# logging.info('re_model_for_duplicate: ' + str(model_for_duplicate))
+logging.info('train_gru: ' + str(train_gru))
+logging.info('test_gru: ' + str(test_gru))
 
 tf_config = tf.ConfigProto()
 tf_config.gpu_options.allow_growth = True
-tf_config.gpu_options.visible_device_list = str(train_re_gru_idx)
+tf_config.gpu_options.visible_device_list = str(train_gru)
 
 # transfer = commons.re_model_transfer
 # model_for_duplicate = commons.re_model_for_duplicate
 
-save_path = config.re_model_path_before_transfer
-if transfer:
-    save_path = config.re_model_path_after_transfer
+save_path = config.re_model_path
+# if transfer:
+#     save_path = config.re_model_path_after_transfer
 logging.info('model save path: ' + save_path)
 
 FLAGS = tf.app.flags.FLAGS
@@ -67,7 +68,7 @@ def main(_):
     wordembedding = np.load(config.vec_npy_path_and_name)
     
     logging.info('reading training data')
-    train_y, train_char, train_word, train_pos1, train_pos2 = generate_train_npy_data(category)
+    train_y, train_char, train_word, train_pos1, train_pos2 = generate_train_npy_data(category_)
     logging.info(str(train_y.shape) + ' ' + str(train_word.shape))
     # none_ind = re_utils.get_none_id(config.relation2id_file_path_and_name)
     # logging.info("None index: " + str(none_ind))
@@ -105,7 +106,7 @@ def main(_):
             # # # # # # # # transfer learning # # # # # # # #
             if transfer:
                 saver = tf.train.Saver()
-                saver.restore(sess, config.re_model_path_before_transfer + config.re_model_prefix  + "memc-" + utils_RE.get_model_list_from_re_model_dir(config.re_model_path_before_transfer, 'memc', True))
+                saver.restore(sess, config.re_model_path + config.re_model_prefix  + "memc-" + utils_RE.get_model_list_from_re_model_dir(config.re_model_path, 'memc', True))
             # # # # # # # # transfer learning # # # # # # # #
 
 
@@ -220,10 +221,10 @@ def main(_):
                 if need_to_test(transfer, one_epoch):
                     logging.info('saving model')
                     current_step = tf.train.global_step(sess, global_step)
-                    path = saver.save(sess, save_path + config.re_model_prefix + category, global_step=current_step)
+                    path = saver.save(sess, save_path + config.re_model_prefix + category_, global_step=current_step)
                     logging.info(path)
 
-                    current_f1 = test_current_step(current_step, save_path, model_for_duplicate=model_for_duplicate, test_re_gru_idx=test_re_gru_idx)
+                    current_f1 = test_current_step(current_step, save_path, test_gru=test_gru)
                     logging.info('current_f1 = ' + str(current_f1) + ', previous_f1 = ' + str(previous_f1))
                     if current_f1 >= previous_f1:
                         delete_re_model_from_disk(current_step, save_path)
@@ -244,17 +245,17 @@ def need_to_test(transfer, one_epoch):
     return not transfer and one_epoch % 25 == 0
 
 
-def test_current_step(current_step, model_path, model_for_duplicate=False, save_prediction=False, test_re_gru_idx=test_re_gru_idx):
+def test_current_step(current_step, model_path, model_for_duplicate=False, save_prediction=False, test_gru=test_gru):
     # test_cat = config.cat_list[0]
-    test_cat = category
-    f1, precision, recall, acc = main_test(current_step, category=test_cat, duplicate=model_for_duplicate, model_path=model_path, save_prediction=save_prediction, test_re_gru_idx=test_re_gru_idx, transfer=transfer)
+    test_cat = category_
+    f1, precision, recall, acc = main_test(current_step, category=test_cat, duplicate=model_for_duplicate, model_path=model_path, save_prediction=save_prediction, test_gru=test_gru, transfer=transfer)
     return f1
 
 
 def delete_re_model_from_disk(save_model_id, model_path):
     file_list = os.listdir(model_path)
     for f in file_list:
-        if not f.startswith(config.re_model_prefix + category):
+        if not f.startswith(config.re_model_prefix + category_):
             continue
         loc1 = f.find('-')
         loc2 = f.find('.')

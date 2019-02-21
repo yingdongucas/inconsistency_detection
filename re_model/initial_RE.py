@@ -94,7 +94,7 @@ def read_word_embedding():
 
 
 # reading data
-def init_test_data(re_origin_test_data_name_read, generate_from_ner_output_path=None, category_separate_idx=None):
+def init_test_data(re_origin_test_data_name_read, generate_from_ner_output_path=None, category_separate_idx=None, dup=False):
     word2id = utils.get_word2id()
     logging.info('reading test data ...')
 
@@ -126,7 +126,10 @@ def init_test_data(re_origin_test_data_name_read, generate_from_ner_output_path=
 
         relation = config.relation2id[content[2]]
 
-        sentence = content[3:-1]
+        sentence = content[3:]
+        if dup:
+            sentence = content[3:-1]
+
         en1 = ''
         en2 = ''
 
@@ -150,7 +153,7 @@ def init_test_data(re_origin_test_data_name_read, generate_from_ner_output_path=
             test_ans[tup][y_id] = 1
 
         output = []
-        
+
         en1_en2_appear = 0
         for i in range(config.re_max_len):
             # logging.info(i)
@@ -230,7 +233,7 @@ def init_train_data(re_origin_train_data_name_read):
         en2pos = int(content[1])
         relation = config.relation2id[content[2]]
 
-        sentence = content[3:-1]
+        sentence = content[3:]
 
         en1 = ''
         en2 = ''
@@ -303,7 +306,7 @@ def init_train_data(re_origin_train_data_name_read):
             output[i-en1_en2_appear_2][0] = word
 
         if en1_en2_appear_2 != 2:
-            logging.info('error append word ' + str(en1_en2_appear_2) + ' ' + str(en1pos) + ' ' + str(en2pos) + ' ' + str(relation))
+            logging.info('error append word ' + str(en1_en2_appear_2) + ' ' + str(en1pos) + ' ' + str(en2pos) + ' ' + str(relation) + ' ' + str(list(range(min(config.re_max_len, len(sentence))))) + ' || ' + ' '.join(content))
 
         train_sen[tup][label_tag].append(output)
 

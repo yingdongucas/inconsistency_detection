@@ -540,7 +540,7 @@ class cnn_rnn:
                 if iter * self.batch_size % period == 0 and epoch > 3:
                     py, py_score = self.predict(self.tx, self.tm, self.twx, self.tcm, self.tgaze, self.tlemma,
                                                 self.tpos)
-                    if epoch - previous_epoch_that_update_dict > 5:
+                    if not self.transfer and (epoch - previous_epoch_that_update_dict > 5) or self.transfer and (epoch - previous_epoch_that_update_dict > 5):
                         # if epoch - previous_epoch_that_update_dict > commons.ner_early_stopping_epochs:
                         logging.info('converge at epoch ' + str(previous_epoch_that_update_dict))
                         return
@@ -557,7 +557,7 @@ class cnn_rnn:
                         previous_epoch_that_update_dict = epoch
                         self.store_params(iter=iter, filename=current_model_name)
                         logging.info('model ' + current_model_name + ' is saved in path ' + self.save_path)
-                        self.delete_re_model_from_disk(model_name)
+                        self.delete_ner_model_from_disk(model_name)
 
                     max_f1 = max(max_f1, f1)
                     logging.info(
@@ -578,7 +578,7 @@ class cnn_rnn:
             logging.info(
                 str(epoch) + ' ' + str(iter) + ' ' + str(max_f1) + ' ' + str(f1) + ' ' + str(metric_result) + '\n')
 
-    def delete_re_model_from_disk(self, model_name):
+    def delete_ner_model_from_disk(self, model_name):
         file_list = os.listdir(self.save_path)
         for f in file_list:
             # if f != model_name and f != 'bkp':

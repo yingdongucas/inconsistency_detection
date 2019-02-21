@@ -201,7 +201,7 @@ def generate_entity_str_using_entity_idx(list_of_entity_list, original_sent_loc,
     return separate_entities_str_list
 
 
-def generate_prediction_and_gt_table(source_data_txt_file, relations=None):
+def generate_prediction_and_gt_table(source_data_txt_file, relations=None, dup=False):
     f_source_data_txt_file = open(source_data_txt_file, 'r')
     content_lines = f_source_data_txt_file.readlines()
     name_version_dict = {}
@@ -221,8 +221,10 @@ def generate_prediction_and_gt_table(source_data_txt_file, relations=None):
 
         en1pos = int(content[0])
         en2pos = int(content[1])
-
-        sentence = content[3:-1]
+        
+        sentence = content[3:]
+        if dup:
+            sentence = content[3:-1]
         cve_db = content[-1].replace('_', ' ')
 
         if cve_db not in name_version_dict:
@@ -243,8 +245,9 @@ def generate_prediction_and_gt_table(source_data_txt_file, relations=None):
         else:
             name_version_dict[cve_db][en1] = [en2]
     f_source_data_txt_file.close()
-    new_name_version_dict = get_report_level_name_version_dict(name_version_dict)
-    return new_name_version_dict
+    if dup:
+        new_name_version_dict = get_report_level_name_version_dict(name_version_dict)
+        return new_name_version_dict
 
 
 def get_report_level_name_version_dict(name_version_dict):

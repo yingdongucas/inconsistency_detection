@@ -16,7 +16,7 @@ from utils_NER import get_ner_model_from_dir, evaluate_each_class
 from initial_NER import generate_line_dict_from_ner_data, read_word2embedding, \
     read_char_data, read_data, create_word_index, create_char_index
 
-parser.add_argument('--cat_num', type=int)
+parser.add_argument('--category', type=int)
 parser.add_argument('--gru', type=int)
 
 # fine tune
@@ -31,7 +31,7 @@ parser.add_argument('--char_rnn', type=utils.str2bool)
 
 args = parser.parse_args()
 
-cat_num = args.cat_num
+category_ = args.category
 gru = args.gru
 
 batch_size = args.batch_size
@@ -47,7 +47,7 @@ import network_NER
 
 
 def train_ner():
-    category = config.num_cat_dict[cat_num]
+    category = config.num_cat_dict[category_]
 
     TRAIN_DATA = config.labeled_ner_data_input_path + category + '_train' + config.data_suffix
     # TRAIN_DATA = include_valid_set()
