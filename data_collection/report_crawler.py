@@ -5,7 +5,8 @@ import time
 from utils_DATA import encode_content, regex_cve, get_cve_id_list
 
 
-def crawl_ref(cve_id, ref_link_list, dict_to_write):
+def crawl_report(args):
+    cve_id, ref_link_list, dict_to_write = args
     for ref_link in ref_link_list:
         # if ref_link != 'http://www.securitytracker.com/id/1041303':
         #     continue
@@ -18,7 +19,7 @@ def crawl_ref(cve_id, ref_link_list, dict_to_write):
             target_content_dic = {'cve_id': [cve_id], 'title': '',
                                   'content': dict_to_write[cve_id]['cve'][cve_link]['content']}
         else:
-            target_content_dic = crawl_report(ref_link, report_category)
+            target_content_dic = obtain_report_type_and_crawl(ref_link, report_category)
         if target_content_dic in [dict(), None]:
             continue
 
@@ -43,7 +44,7 @@ def get_report_category(ref_link):
     return report_category
 
 
-def crawl_report(report_link, report_category):
+def obtain_report_type_and_crawl(report_link, report_category):
     print('crawling ' + report_link)
     target_content_dic = dict()
     crawl_result = crawl_content_from_link(report_link)

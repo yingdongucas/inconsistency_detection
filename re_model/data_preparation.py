@@ -284,7 +284,7 @@ def get_report_level_name_version_dict(name_version_dict):
     return report_name_version_dict
 
 
-if __name__ == '__main__':
-    dir1 = '/Users/yingdong/Desktop/vulnerability_data/project_data/ner_re_dataset/ner_data_input/memc_full_duplicate'
-    dir2 = dir1 + '.txt_cut_199'
-    generate_re_data_for_ner_output(dir2, dir1, config.re_max_len)
+# if __name__ == '__main__':
+#     dir1 = '/Users/yingdong/Desktop/vulnerability_data/project_data/ner_re_dataset/ner_data_input/memc_full_duplicate'
+#     dir2 = dir1 + '.txt_cut_199'
+#     generate_re_data_for_ner_output(dir2, dir1, config.re_max_len)

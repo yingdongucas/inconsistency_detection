@@ -43,7 +43,7 @@ def evaluate_each_class(py, test_data_dic, y_, m_, file_result=None, debug=False
             if td - 1 < py_size:
                 predicted_label = py[td - 1]
 
-                if predicted_label != 0:
+                if predicted_label != 2:
                     predicted_label = config.labels[predicted_label]
                 else:
                     predicted_label = 'O'
