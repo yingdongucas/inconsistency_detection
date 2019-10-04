@@ -54,7 +54,7 @@ def build_corpus(data_dir, cps_dir):
     clean_string = ''
     for s in str_all_set:
         clean_string += s.strip() + ' '
-    with open(corpus_dir + 'corpus.txt', 'w') as f_corpus:
+    with open(cps_dir + 'corpus.txt', 'w') as f_corpus:
         f_corpus.write(clean_string)
 
 

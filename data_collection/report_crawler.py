@@ -3,6 +3,7 @@ from lxml import html
 import requests
 import time
 from utils_DATA import encode_content, regex_cve, get_cve_id_list
+from config import report_list
 
 
 def crawl_report(args):
@@ -23,8 +24,16 @@ def crawl_report(args):
         if target_content_dic in [dict(), None]:
             continue
 
-        # update_version_dict_and_report_dict_by_ref(cve_id, ref_link, report_category, target_content_dic,
-        #                                            version_dict, dict_to_write)
+        add_to_report_dic(dict_to_write, target_content_dic['cve_id'], report_category, ref_link,
+                          target_content_dic['title'], target_content_dic['content'])
+
+
+def add_to_report_dic(dict_to_write, cve_id_list, report_category, report_link, title, content):
+    for cve_id in cve_id_list:
+        if cve_id not in dict_to_write:
+            dict_to_write[cve_id] = {}
+        db = report_list[report_category]
+        dict_to_write[cve_id][db] = {report_link: {'content': content, 'title': title}}
 
 
 def get_report_category(ref_link):

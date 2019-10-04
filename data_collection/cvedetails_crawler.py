@@ -47,11 +47,11 @@ def crawl_ref_for_one_vul_category(args):
 
 class Crawler:
 
-    def __init__(self, cve_id_dir, cve_ref_dir, data_dir, parallel_thread_num=5):
+    def __init__(self, cve_id_dir, cve_ref_dir, data_dir, num_of_CPUs):
         self.cve_id_dir = cve_id_dir
         self.cve_ref_dir = cve_ref_dir
         self.data_dir = data_dir
-        self.pool = multiprocessing.Pool(parallel_thread_num)
+        self.pool = multiprocessing.Pool(num_of_CPUs)
 
     def run(self):
         self.crawl_cveid_list()
@@ -175,7 +175,7 @@ if __name__ == '__main__':
     dataset_dir = 'DATASET_DIR'     # specify the path where the collected
                                     # reports are located.
 
-    crawler = Crawler(cveid_dir, cveref_dir, dataset_dir)
+    crawler = Crawler(cveid_dir, cveref_dir, dataset_dir, num_of_CPUs=5)
     crawler.run()
 
 
